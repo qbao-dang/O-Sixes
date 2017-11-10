@@ -142,4 +142,40 @@ h1{
 .btn-group button:hover {
      background-color: gold;
 }
+
+/* Navigation bar */
+.nav-bar {
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #333;
+    font-size: 14px;
+}
+/* Navigation buttons (Main Menu)*/
+.nav-links {
+    display: block;
+    color: white;
+    text-align: center;
+
+    padding: 14px 20px;
+    padding-top: 27px;
+    text-decoration: none;
+    font-family: "Arial Bold",  Gadget, sans-serif;
+    background-color: transparent;
+}
+.link-active{
+    background-color: #9999cc;
+    color: white;
+}
+li {
+    float: left;
+}
+
+#header_logo{
+    height: 40px;
+    padding: 5px;
+    object-fit: contain;
+}
 >>>>>>> 7955889cb00f4d86f836753c53912de176faa621
