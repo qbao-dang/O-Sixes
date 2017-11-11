@@ -1,94 +1,25 @@
 <<<<<<< HEAD
-
-body{
+head {
+    height:50px;
+}
+body {
     background-image: url("imgs/O6_website_HomePage_Final_BackgroundLogo.png");
     background-size: 75%;
     background-repeat: no-repeat;
     background-color: #333333;
+    position:relative;
 }
 
 /* Header */
 .header {
     font-family: "Arial",  Gadget, sans-serif;
     top: 0px;
-    position: fixed;
+    position: relative;
     background:#333333;
     width: 100%;
+    height:50px;
     text-align: center;
     color: white;
-
-}
-
-h1{
-    font-size: 150%;
-}
-
-/* content */
-.content {
-    width:960px;
-    background: #333333;
-    border: 1px solid #CCC;
-    margin: auto;
-}
-
-.buttonHead{
-    background-color: #4D4D66;
-    width: 100%;
-    height: auto;
-    box-shadow: 2px 2px #343333; 
-    padding-bottom: .5%;
-    padding-top: .3%;
-
-}
-
-/*Button */
-.btn-group button {
-    font-size: 50%;
-    font-family: "Arial Black",  Gadget, sans-serif;
-    background-color: #4D4D66;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    align-items: center;
-    color: black; /* black text */
-    cursor: pointer; /* Pointer/hand icon */
-    width: 13%;
-    height: 30px;
-    border: 0px;
-    padding: -5px;
-    margin: -5px;
-}
-
-/* Clear floats (clearfix hack) */
-.btn-group:after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-/* Add a background color on hover */
-.btn-group button:hover {
-     background-color: gold;
-}
-=======
-
-body{
-    background-image: url("imgs/O6_website_HomePage_Final_BackgroundLogo.png");
-    background-size: 75%;
-    background-repeat: no-repeat;
-    background-color: #333333;
-}
-
-/* Header */
-.header {
-    font-family: "Arial",  Gadget, sans-serif;
-    top: 0px;
-    position: fixed;
-    background:#333333;
-    width: 100%;
-    text-align: center;
-    color: white;
-
 }
 
 h1{
@@ -178,4 +109,58 @@ li {
     padding: 5px;
     object-fit: contain;
 }
+
+.league-sched{
+    width:250px;
+
+}
+.league-name {
+    float:left;
+    font-family: "Arial Bold";
+    font-size: 16px;
+}
+.league-time, .league-spots{
+    float:right;
+    font-size: 12px;
+}
+
+
+/* Style the buttons that are used to open and close the accordion panel */
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 16px;
+    width: 100%;
+    height: 55px;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+button.accordion.active, button.accordion:hover{
+    background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+div.registration-panel {
+    background-color: white;
+    display: none;
+}
+button.indiv-join, button.team-join {
+    background-color:#eee;
+    height:30px;
+    border:none;
+    outline:none;
+    cursor: pointer;
+    float:right;
+    margin-left:2px;
+}
+
+button.indiv-join.active, button.team-join.active, button.indiv-join:hover, button.team-join:hover {
+        background-color: #9999cc;
+}
+
+
 >>>>>>> 7955889cb00f4d86f836753c53912de176faa621
