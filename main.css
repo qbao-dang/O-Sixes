@@ -110,8 +110,17 @@ li {
     object-fit: contain;
 }
 
+div.sidebar{
+    display:inline-block;
+    background-color:aliceblue;
+    position:relative;
+    width:96px;
+    height:100%;
+}
+
 .league-sched{
     width:250px;
+    display:inline-block;
 
 }
 .league-name {
