@@ -37,22 +37,20 @@ var loadLeagueData = function() {
 
 var  readLeagueData = function(xml) {
     /* Read xml file */
-    var x, y, i, j, txt, xmlDoc; 
+    var x, y, z, i, xmlDoc; 
+    var leagueNames, leagueTimes, leagueSpots;
     xmlDoc = xml.responseXML;
-    txt = "";
     x = xmlDoc.getElementsByTagName("title");
-    for (i=0; i<x.length;i++){
-        txt = x[i].childNodes[0].nodeValue;
-        
-        document.getElementsByClassName("league-name")[i].innerHTML = txt;
-    }
-    
-    /* Load times */
-    txt = "";
     y = xmlDoc.getElementsByTagName("time");
-    for (j=0; j<y.length;j++){
-        txt = y[j].childNodes[0].nodeValue;
-        document.getElementsByClassName("league-time")[j].innerHTML = txt;
+    z = xmlDoc.getElementsByTagName("spots");
+    leagueNames = document.getElementsByClassName("league-name");
+    leagueTimes = document.getElementsByClassName("league-time");
+    leagueSpots = document.getElementsByClassName("league-spots");
+    for (i=0; i<x.length;i++){
+        if (i<leagueNames.length){
+            leagueNames[i].innerHTML = x[i].childNodes[0].nodeValue;
+            leagueTimes[i].innerHTML = y[i].childNodes[0].nodeValue;
+            leagueSpots[i].innerHTML = z[i].childNodes[0].nodeValue;
+        }
     }
-
 }
