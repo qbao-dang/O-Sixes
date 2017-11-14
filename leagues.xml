@@ -3,7 +3,7 @@
     <day>
         <league>
             <title>SAT1</title>
-            <time>10:00AM</time>
+            <time>9:00AM</time>
             <spots>5</spots>
         </league>
         <league>
@@ -14,7 +14,7 @@
         <league>
             <title>SAT3</title>
             <time>12:00PM</time>
-            <spots>6</spots>
+            <spots>5</spots>
         </league>
     </day>
     <day>
