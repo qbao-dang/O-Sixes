@@ -39,13 +39,28 @@ var  readLeagueData = function(xml) {
     /* Read xml file */
     var x, y, z, i, xmlDoc; 
     var leagueNames, leagueTimes, leagueSpots;
+    var saturdayLeagues;
     xmlDoc = xml.responseXML;
-    x = xmlDoc.getElementsByTagName("title");
-    y = xmlDoc.getElementsByTagName("time");
-    z = xmlDoc.getElementsByTagName("spots");
-    leagueNames = document.getElementsByClassName("league-name");
-    leagueTimes = document.getElementsByClassName("league-time");
-    leagueSpots = document.getElementsByClassName("league-spots");
+    x = xmlDoc.getElementsByTagName("day")[0].getElementsByTagName("title");
+    y = xmlDoc.getElementsByTagName("day")[0].getElementsByTagName("time");
+    z = xmlDoc.getElementsByTagName("day")[0].getElementsByTagName("spots");
+    
+    leagueNames = document.getElementById("SAT").getElementsByClassName("league-name");
+    leagueTimes = document.getElementById("SAT").getElementsByClassName("league-time");
+    leagueSpots = document.getElementById("SAT").getElementsByClassName("league-spots");
+    for (i=0; i<x.length;i++){
+        if (i<leagueNames.length){
+            leagueNames[i].innerHTML = x[i].childNodes[0].nodeValue;
+            leagueTimes[i].innerHTML = y[i].childNodes[0].nodeValue;
+            leagueSpots[i].innerHTML = z[i].childNodes[0].nodeValue;
+        }
+    }
+    x = xmlDoc.getElementsByTagName("day")[1].getElementsByTagName("title");
+    y = xmlDoc.getElementsByTagName("day")[1].getElementsByTagName("time");
+    z = xmlDoc.getElementsByTagName("day")[1].getElementsByTagName("spots");
+    leagueNames = document.getElementById("SUN").getElementsByClassName("league-name");
+    leagueTimes = document.getElementById("SUN").getElementsByClassName("league-time");
+    leagueSpots = document.getElementById("SUN").getElementsByClassName("league-spots");
     for (i=0; i<x.length;i++){
         if (i<leagueNames.length){
             leagueNames[i].innerHTML = x[i].childNodes[0].nodeValue;

@@ -18,7 +18,21 @@
         </league>
     </day>
     <day>
-        
+        <league>
+            <title>SUN1</title>
+            <time>9:00AM</time>
+            <spots>5</spots>
+        </league>
+        <league>
+            <title>SUN2</title>
+            <time>11:00AM</time>
+            <spots>4</spots>
+        </league>
+        <league>
+            <title>SUN3</title>
+            <time>12:00PM</time>
+            <spots>5</spots>
+        </league>
     </day>
     <day>
     
