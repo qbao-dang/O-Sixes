@@ -33,6 +33,11 @@
             <time>12:00PM</time>
             <spots>5</spots>
         </league>
+        <league>
+            <title>SUN4</title>
+            <time>1:00PM</time>
+            <spots>3</spots>
+        </league>
     </day>
     <day>
     

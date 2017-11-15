@@ -36,36 +36,33 @@ var loadLeagueData = function() {
 }
 
 var  readLeagueData = function(xml) {
-    /* Read xml file */
-    var x, y, z, i, xmlDoc; 
+    /* Function: read xml file */
+    var x, y, z, i, k, xmlDoc; 
     var leagueNames, leagueTimes, leagueSpots;
-    var saturdayLeagues;
-    xmlDoc = xml.responseXML;
-    x = xmlDoc.getElementsByTagName("day")[0].getElementsByTagName("title");
-    y = xmlDoc.getElementsByTagName("day")[0].getElementsByTagName("time");
-    z = xmlDoc.getElementsByTagName("day")[0].getElementsByTagName("spots");
+    var leagueDays;
+    var days = ["SAT","SUN"];
     
-    leagueNames = document.getElementById("SAT").getElementsByClassName("league-name");
-    leagueTimes = document.getElementById("SAT").getElementsByClassName("league-time");
-    leagueSpots = document.getElementById("SAT").getElementsByClassName("league-spots");
-    for (i=0; i<x.length;i++){
-        if (i<leagueNames.length){
-            leagueNames[i].innerHTML = x[i].childNodes[0].nodeValue;
-            leagueTimes[i].innerHTML = y[i].childNodes[0].nodeValue;
-            leagueSpots[i].innerHTML = z[i].childNodes[0].nodeValue;
+    xmlDoc = xml.responseXML;
+    leagueDays = xmlDoc.getElementsByTagName("day");
+    
+    for (k=0;k<leagueDays.length;k++){
+        /* Loop through each league day */
+        x = xmlDoc.getElementsByTagName("day")[k].getElementsByTagName("title");
+        y = xmlDoc.getElementsByTagName("day")[k].getElementsByTagName("time");
+        z = xmlDoc.getElementsByTagName("day")[k].getElementsByTagName("spots");
+        
+        leagueNames = document.getElementById(days[k]).getElementsByClassName("league-name");
+        leagueTimes = document.getElementById(days[k]).getElementsByClassName("league-time");
+        leagueSpots = document.getElementById(days[k]).getElementsByClassName("league-spots");
+        for (i=0; i<x.length;i++){
+            if (i<leagueNames.length){
+                leagueNames[i].innerHTML = x[i].childNodes[0].nodeValue;
+                leagueTimes[i].innerHTML = y[i].childNodes[0].nodeValue;
+                leagueSpots[i].innerHTML = z[i].childNodes[0].nodeValue;
+            }
         }
     }
-    x = xmlDoc.getElementsByTagName("day")[1].getElementsByTagName("title");
-    y = xmlDoc.getElementsByTagName("day")[1].getElementsByTagName("time");
-    z = xmlDoc.getElementsByTagName("day")[1].getElementsByTagName("spots");
-    leagueNames = document.getElementById("SUN").getElementsByClassName("league-name");
-    leagueTimes = document.getElementById("SUN").getElementsByClassName("league-time");
-    leagueSpots = document.getElementById("SUN").getElementsByClassName("league-spots");
-    for (i=0; i<x.length;i++){
-        if (i<leagueNames.length){
-            leagueNames[i].innerHTML = x[i].childNodes[0].nodeValue;
-            leagueTimes[i].innerHTML = y[i].childNodes[0].nodeValue;
-            leagueSpots[i].innerHTML = z[i].childNodes[0].nodeValue;
-        }
-    }
+
+    
+
 }
