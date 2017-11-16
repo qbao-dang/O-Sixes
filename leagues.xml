@@ -4,39 +4,46 @@
         <league>
             <title>SAT1</title>
             <time>9:00AM</time>
-            <spots>5</spots>
+            <indiv-spots>5</indiv-spots>
+            <team-spots>3</team-spots>
         </league>
         <league>
             <title>SAT2</title>
             <time>11:00AM</time>
-            <spots>4</spots>
+            <indiv-spots>4</indiv-spots>
+            <team-spots>3</team-spots>
         </league>
         <league>
             <title>SAT3</title>
             <time>12:00PM</time>
-            <spots>5</spots>
+            <indiv-spots>5</indiv-spots>
+            <team-spots>3</team-spots>
         </league>
     </day>
     <day>
         <league>
             <title>SUN1</title>
             <time>9:00AM</time>
-            <spots>5</spots>
+            <indiv-spots>5</indiv-spots>
+            <team-spots>1</team-spots>
         </league>
         <league>
             <title>SUN2</title>
             <time>11:00AM</time>
-            <spots>4</spots>
+            <indiv-spots>4</indiv-spots>
+            <team-spots>3</team-spots>
         </league>
         <league>
             <title>SUN3</title>
             <time>12:00PM</time>
-            <spots>5</spots>
+            <indiv-spots>5</indiv-spots>
+            <team-spots>2</team-spots>
         </league>
         <league>
             <title>SUN4</title>
             <time>1:00PM</time>
-            <spots>3</spots>
+            <indiv-spots>3</indiv-spots>
+            <team-spots>1</team-spots>
         </league>
     </day>
     <day>

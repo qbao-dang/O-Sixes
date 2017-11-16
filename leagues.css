@@ -27,9 +27,10 @@
     font-family: "Arial Bold";
     font-size: 16px;
 }
-.league-data{
+.league-data, .indiv-join,.team-join{
     float:right;
     font-size: 12px;
+    text-align:right;
 }
 
 
@@ -59,12 +60,13 @@ div.registration-panel {
 }
 button.indiv-join, button.team-join {
     background-color:#eee;
-    height:30px;
+    height:35px;
     border:none;
     outline:none;
     cursor: pointer;
     float:right;
     margin-left:2px;
+    margin-bottom:5px;
 }
 
 button.indiv-join.active, button.team-join.active, button.indiv-join:hover, button.team-join:hover {

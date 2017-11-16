@@ -37,8 +37,8 @@ var loadLeagueData = function() {
 
 var  readLeagueData = function(xml) {
     /* Function: read xml file */
-    var x, y, z, i, k, xmlDoc; 
-    var leagueNames, leagueTimes, leagueSpots;
+    var name, time, teamSpots, indivSpots, i, k, xmlDoc; 
+    var leagueNames, leagueTimes, leagueIndivSpots, leagueTeamSpots;
     var leagueDays;
     var days = ["SAT","SUN"];
     
@@ -47,18 +47,21 @@ var  readLeagueData = function(xml) {
     
     for (k=0;k<leagueDays.length;k++){
         /* Loop through each league day */
-        x = xmlDoc.getElementsByTagName("day")[k].getElementsByTagName("title");
-        y = xmlDoc.getElementsByTagName("day")[k].getElementsByTagName("time");
-        z = xmlDoc.getElementsByTagName("day")[k].getElementsByTagName("spots");
+        name = leagueDays[k].getElementsByTagName("title");
+        time = leagueDays[k].getElementsByTagName("time");
+        teamSpots = leagueDays[k].getElementsByTagName("team-spots");
+        indivSpots = leagueDays[k].getElementsByTagName("indiv-spots");
         
         leagueNames = document.getElementById(days[k]).getElementsByClassName("league-name");
         leagueTimes = document.getElementById(days[k]).getElementsByClassName("league-time");
-        leagueSpots = document.getElementById(days[k]).getElementsByClassName("league-spots");
-        for (i=0; i<x.length;i++){
+        leagueIndivSpots = document.getElementById(days[k]).getElementsByClassName("indiv-spots");
+        leagueTeamSpots = document.getElementById(days[k]).getElementsByClassName("team-spots");
+        for (i=0; i<name.length;i++){
             if (i<leagueNames.length){
-                leagueNames[i].innerHTML = x[i].childNodes[0].nodeValue;
-                leagueTimes[i].innerHTML = y[i].childNodes[0].nodeValue;
-                leagueSpots[i].innerHTML = z[i].childNodes[0].nodeValue;
+                leagueNames[i].innerHTML = name[i].childNodes[0].nodeValue;
+                leagueTimes[i].innerHTML = time[i].childNodes[0].nodeValue;
+                leagueIndivSpots[i].innerHTML = indivSpots[i].childNodes[0].nodeValue;
+                leagueTeamSpots[i].innerHTML = teamSpots[i].childNodes[0].nodeValue;
             }
         }
     }
