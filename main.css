@@ -121,7 +121,7 @@ div.sidebar{
     position:relative;
     width:96px;
     height:500px;
-    border-color:aquamarine;
+    border-color:transparent;
     border-style:dashed;
     float:left;
 }

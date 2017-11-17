@@ -40,7 +40,7 @@ var  readLeagueData = function(xml) {
     var name, time, teamSpots, indivSpots, i, k, xmlDoc; 
     var leagueNames, leagueTimes, leagueIndivSpots, leagueTeamSpots;
     var leagueDays;
-    var days = ["SAT","SUN"];
+    var days = ["SAT","SUN","WED"];
     
     xmlDoc = xml.responseXML;
     leagueDays = xmlDoc.getElementsByTagName("day");

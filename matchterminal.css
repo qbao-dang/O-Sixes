@@ -1,0 +1,31 @@
+/* CSS for MatchTerminal.HTML */
+
+#match-header {
+    display:inline-block;
+    font-family:"Arial Bold";
+    font-size:30px;
+    padding-top:15px;
+    padding-right:15px;
+    padding-bottom:15px;
+    color:white;
+}
+#match-timer {
+    display:inline-block;
+    font-family:"Arial Bold";
+    font-size:18px;
+    color:coral;
+}
+
+#countdown {
+    font-size:25px;
+    color:white;
+}
+
+.map-selection {
+    display:block;
+    padding:10px;
+    font-size: 20px;
+    font-family:"Arial Bold";
+    background-color:white;
+    opacity: 0.75;
+}
