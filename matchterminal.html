@@ -14,18 +14,67 @@
             <li><a class="nav-links" href="leaderboards.html">Leaderboards</a></li>
         </ul>
     </div>
-</div>
+    </div>
 </head>
 
-<body>
+<body onload="set_MapLock()">
     <div class="sidebar"> </div>
-    <div id="match-header"><span>Team A</span> vs. <span>Team B</span></div>
-    <div id="match-timer">match starts in <span id="countdown">25m09s</span></div>
-    <div class="map-selection">
-        <h1>Lock in a Map</h1>
+    <div id="match-terminal">
+        <div id="match-header"><span>Team A</span> vs. <span>Team B</span></div>
+        <div id="match-timer">match starts in <span id="countdown">25m09s</span></div>
+        <div class="map-selection  headerHeight">
+            <img id="Number1" src ="imgs/matchterminal/O6_V3_MatchTerminal_Number1.png" alt="1" class=""/>
+            <div id="lock-in" class="headerText headerHeight ">
+                <h2>Lock In A Map</h2>
+            </div>
+        </div>
+        
+        <! MAP LOCK IN BUTTONS: Buttons for teams to lock in single maps >
+        <div id="map-lockin">
+            <div id="lockin-TeamA" class="map-lock">
+                <div class="team-maplock-header">Team A</div>
+                <button id="teamA-maplock"></button>
+            </div>
+            <div id="lockin-TeamB" class="map-lock">
+                <div class="team-maplock-header">Team B</div>
+                <button id="teamB-maplock" ></button>
+            </div>
+        </div>
+        
+        <div class="map-selection  headerHeight">
+            <img id="Number1" src ="imgs/matchterminal/O6_V3_MatchTerminal_Number1.png" alt="1" class=""/>
+            <div id="lock-in" class="headerText headerHeight ">
+                <h2>Ban Maps</h2>
+            </div>
+        </div>
     </div>
-    <div class="map-selection">
-        <h1>Map Banning</h1>
+    
+    <! MODALS USED FOR MAP LOCK IN (STEP 1)>
+    <div id="maplock_ModalA" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <div><span class="close">&times;</span></div>
+            <div>
+                <div id="maplock-assaultA" class="modal-maplock-div container-check">
+                    <span class="header-maptype">Assault</span>
+                    <ul class="maplock-list">
+                        <li class="maplist-item">Hanamura</li>
+                        <li class="maplist-item">Horizon Lunar Colony</li>
+                        <li class="maplist-item">Temple of Anubis</li>
+                        <li class="maplist-item">Volskaya Industries</li>
+                    </ul>
+                </div>
+            </div>
+          </div>
     </div>
-</body>    
+    <div id="maplock_ModalB" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Some text in the Modal B..</p>
+          </div>
+    </div>
+</body>
+
 </html>
+<script src="matchterminal.js"></script>

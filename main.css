@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 head {
     height:50px;
+    display:block;
 }
 body {
     background-image: url("imgs/O6_website_HomePage_Final_BackgroundLogo.png");
@@ -8,6 +9,7 @@ body {
     background-repeat: no-repeat;
     background-color: #333333;
     position:relative;
+
 }
 
 /* Header */
