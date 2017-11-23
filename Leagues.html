@@ -1,16 +1,17 @@
 
 <!DOCTYPE html>
 <html>
-
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="body.css">
     <link rel="stylesheet" href="leagues.css">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- jQuery from Google -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
     <!-- Latest compiled JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
     <div class = "header">
         <div >
@@ -25,113 +26,112 @@
 </head>
 
 <body onload='accordionSetup(); loadLeagueData();'>
-    
-    <div class="sidebar"></div>
+    <div class="container">
+        <div class="sidebar"></div>
+        <div class="row">
+            <!League sections>
+            <div class="col-sm" id="SAT">
+                <div class="league-sched-header">SATURDAY LEAGUES</div>
+                <! League 1>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" data-parent="#SAT" href="#SAT1">
+                            <span class="league-name">SAT League 1</span>
+                            <span class="league-data">
+                                <span class="league-time">8:00PM</span>
+                            </span>
+                        </a>
+                    </div>
+                    <div id="SAT1" class="collapse show">
+                        <div class="card-body">
+                            <button class="team-join">Join As Team<br>
+                                (<span class="team-spots">5</span> spots)</button>
+                            <button class="indiv-join">Join As Individual<br>
+                                (<span class="indiv-spots">5</span> spots)</button>
+                        </div>
+                    </div>
+                </div>
+                <! League>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" data-parent="#SAT" href="#SAT2">
+                            <span class="league-name">SAT League 1</span>
+                            <span class="league-data">
+                                <span class="league-time">8:00PM</span>
+                            </span>
+                        </a>
+                    </div>
+                    <div id="SAT2" class="collapse">
+                        <div class="card-body">
+                            <button class="team-join">Join As Team<br>
+                                (<span class="team-spots">5</span> spots)</button>
+                            <button class="indiv-join">Join As Individual<br>
+                                (<span class="indiv-spots">5</span> spots)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm" id="SUN">
+                <div class="league-sched-header">SUNDAY LEAGUES</div>
+                <! League 1>
+                <button class="accordion">
+                        <span class="league-name">League 1</span>
+                        <span class="league-data">
+                            <span class="league-time">8:00PM</span>
+                        </span>
+                </button>
+                <div class="registration-panel">
+                        <button class="team-join">Join As Team<br>
+                            (<span class="team-spots">5</span> spots)</button>
+                        <button class="indiv-join">Join As Individual<br>
+                            (<span class="indiv-spots">5</span> spots)</button>
+                </div>
+                <! League 2>
+                <button class="accordion">
+                        <span class="league-name">League 2</span>
+                        <span class="league-data">
+                            <span class="league-time">8:00PM</span>
+                        </span>
+                </button>
+                <div class="registration-panel">
+                        <button class="team-join">Join As Team<br>
+                            (<span class="team-spots">5</span> spots)</button>
+                        <button class="indiv-join">Join As Individual<br>
+                            (<span class="indiv-spots">5</span> spots)</button>
+                </div>
+                <! League 3>
+                <button class="accordion">
+                        <span class="league-name">League 2</span>
+                        <span class="league-data">
+                            <span class="league-time">8:00PM</span>
+                        </span>
+                </button>
+                <div class="registration-panel">
+                        <button class="team-join">Join As Team<br>
+                            (<span class="team-spots">5</span> spots)</button>
+                        <button class="indiv-join">Join As Individual<br>
+                            (<span class="indiv-spots">5</span> spots)</button>
+                </div>
 
-    <!League sections>
-    <div class="league-sched" id="SAT">
-        <div class="league-sched-header">SATURDAY LEAGUES</div>
-        <! League 1>
-        <button class="accordion">
-                <span class="league-name">SAT League 1</span>
-                <span class="league-data">
-                    <span class="league-time">8:00PM</span>
-                </span>
-        </button>
-        <div class="registration-panel">
-                <button class="team-join">Join As Team<br>
-                    (<span class="team-spots">5</span> spots)</button>
-                <button class="indiv-join">Join As Individual<br>
-                    (<span class="indiv-spots">5</span> spots)</button>
-        </div>
-        <! League>
-        <button class="accordion">
-                <span class="league-name">SAT League 2</span>
-                <span class="league-data">
-                    <span class="league-time">8:00PM</span>
-                </span>
-        </button>
-         <div class="registration-panel">
-                <button class="team-join">Join As Team<br>
-                    (<span class="team-spots">5</span> spots)</button>
-                <button class="indiv-join">Join As Individual<br>
-                    (<span class="indiv-spots">5</span> spots)</button>
-        </div>
-        <! League>
-        <button class="accordion">
-                <span class="league-name">SAT League 2</span>
-                <span class="league-data">
-                    <span class="league-time">8:00PM</span>
-                </span>
-        </button>
-        <div class="registration-panel">
-                <button class="team-join">Join As Team<br>
-                    (<span class="team-spots">5</span> spots)</button>
-                <button class="indiv-join">Join As Individual<br>
-                    (<span class="indiv-spots">5</span> spots)</button>
-        </div>
+                <! League 4>
+                <button class="accordion">
+                        <span class="league-name">League 2</span>
+                        <span class="league-data">
+                            <span class="league-time">8:00PM</span>
+                        </span>
+                </button>
+                <div class="registration-panel">
+                        <button class="team-join">Join As Team<br>
+                            (<span class="team-spots">5</span> spots)</button>
+                        <button class="indiv-join">Join As Individual<br>
+                            (<span class="indiv-spots">5</span> spots)</button>
+                </div>
 
+
+        </div>
     </div>
-    <div class="league-sched" id="SUN">
-            <div class="league-sched-header">SUNDAY LEAGUES</div>
-        <! League 1>
-        <button class="accordion">
-                <span class="league-name">League 1</span>
-                <span class="league-data">
-                    <span class="league-time">8:00PM</span>
-                </span>
-        </button>
-        <div class="registration-panel">
-                <button class="team-join">Join As Team<br>
-                    (<span class="team-spots">5</span> spots)</button>
-                <button class="indiv-join">Join As Individual<br>
-                    (<span class="indiv-spots">5</span> spots)</button>
-        </div>
-        <! League 2>
-        <button class="accordion">
-                <span class="league-name">League 2</span>
-                <span class="league-data">
-                    <span class="league-time">8:00PM</span>
-                </span>
-        </button>
-        <div class="registration-panel">
-                <button class="team-join">Join As Team<br>
-                    (<span class="team-spots">5</span> spots)</button>
-                <button class="indiv-join">Join As Individual<br>
-                    (<span class="indiv-spots">5</span> spots)</button>
-        </div>
-        <! League 3>
-        <button class="accordion">
-                <span class="league-name">League 2</span>
-                <span class="league-data">
-                    <span class="league-time">8:00PM</span>
-                </span>
-        </button>
-        <div class="registration-panel">
-                <button class="team-join">Join As Team<br>
-                    (<span class="team-spots">5</span> spots)</button>
-                <button class="indiv-join">Join As Individual<br>
-                    (<span class="indiv-spots">5</span> spots)</button>
-        </div>
-        
-        <! League 4>
-        <button class="accordion">
-                <span class="league-name">League 2</span>
-                <span class="league-data">
-                    <span class="league-time">8:00PM</span>
-                </span>
-        </button>
-        <div class="registration-panel">
-                <button class="team-join">Join As Team<br>
-                    (<span class="team-spots">5</span> spots)</button>
-                <button class="indiv-join">Join As Individual<br>
-                    (<span class="indiv-spots">5</span> spots)</button>
-        </div>
 
-
-    </div>
-
-   
+   </div>
 </body>    
 </html>
 <script src="leagues.js"></script>
