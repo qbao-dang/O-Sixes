@@ -113,7 +113,7 @@ h2 {
     display:block;
 }
 .maplock-list {
-    list-style-type:circle;
+    list-style-type:none;
     text-align:left;
 }
 

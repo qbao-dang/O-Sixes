@@ -102,7 +102,7 @@ h1{
     background-color: #9999cc;
     color: white;
 }
-li {
+.float-left {
     float: left;
 }
 
