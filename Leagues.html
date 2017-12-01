@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="body.css">
     <link rel="stylesheet" href="leagues.css">
 
-<div class="row">
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- jQuery from Google -->
@@ -15,27 +15,39 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-    <div class = "header">
-        <div >
-            <ul class="nav-bar">
-                <li class="float-left"><a href="index.html"><img id="header_logo" src ="imgs/O6_Logo_V3.png" alt="logo" href="/index.html"/></a></li>
-                <li class="float-left"><a class="nav-links link-active" href="leagues.html">Leagues</a></li>
-                <li class="float-left"><a class="nav-links" href="matchterminal.html">Match Terminal</a></li>
-                <li class="float-left"><a class="nav-links" href="leaderboards.html">Leaderboards</a></li>
-            </ul>
-        </div>
-    </div>
+    <script src="leagues.js"></script>
 </head>
-</div>
-<div class="row">
+
 
 <body onload='accordionSetup(); loadLeagueData();'>
+
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#">Leagues <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Match Terminal</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Leaderboards</a>
+                  </li>
+                </ul>
+            </div>
+        </nav>
+
     <div class="container">
+
         <div class="sidebar"></div>
+
         <div class="row">
             <!League sections>
             
-            <div class="card col-sm">
+            <div class="card col-sm-6">
                 <div class="card-body" id="SAT" role="tablist">
                     <h3 class="card-title">Saturday Leagues</h3>
                     <div class="card" >
@@ -106,7 +118,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card col-sm">
+            <div class="card col-sm-6">
                 <div class="card-body" id="SUN" role="tablist">
                     <h3 class="card-title">Sunday Leagues</h3>
                     <div class="card" >
@@ -182,7 +194,5 @@
    </div>
 
 </body> 
-</div>
 
 </html>
-<script src="leagues.js"></script>
