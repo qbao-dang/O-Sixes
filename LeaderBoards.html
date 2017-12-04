@@ -12,19 +12,31 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>  
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="body.css">
-    <div class = "header">
-    <div >
-        <ul class="nav-bar">
-            <li><a href="index.html"><img id="header_logo" src ="imgs/O6_Logo_V3.png" alt="logo" href="/index.html"/></a></li>
-            <li><a class="nav-links" href="Leagues.html">Leagues</a></li>
-            <li><a class="nav-links" href="matchterminal.html">Match Terminal</a></li>
-            <li><a class="nav-links link-active" href="Leaderboards.html">Leaderboards</a></li>
-        </ul>
-    </div>
-</div>
 </head>
 
 <body>
-        <div class="sidebar"> </div>
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+        <a class="navbar-brand" href="index.html">
+            <img src="imgs/O6_Logo_V3.png" width = "68" height="30" alt="O-Sixes">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="Leagues.html">Leagues</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="matchterminal.html">Match Terminal</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="leaderboards.html">Leaderboards</a>
+              </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="sidebar"> </div>
 </body>    
 </html>

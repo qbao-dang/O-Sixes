@@ -13,20 +13,32 @@
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="body.css">
     <link rel="stylesheet" href="matchterminal.css">
-    <div class = "header">
-    <div >
-        <ul class="nav-bar">
-            <li class="float-left"><a href="index.html"><img id="header_logo" src ="imgs/O6_Logo_V3.png" alt="logo" href="/index.html"/></a></li>
-            <li class="float-left"><a class="nav-links" href="leagues.html">Leagues</a></li>
-            <li class="float-left"><a class="nav-links link-active" href="matchterminal.html">Match Terminal</a></li>
-            <li class="float-left"><a class="nav-links" href="leaderboards.html">Leaderboards</a></li>
-        </ul>
-    </div>
-    </div>
 </head>
 
 <body onload="set_MapLock()">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+        <a class="navbar-brand" href="index.html">
+            <img src="imgs/O6_Logo_V3.png" width = "68" height="30" alt="O-Sixes">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="Leagues.html">Leagues </a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="matchterminal.html">Match Terminal<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="leaderboards.html">Leaderboards</a>
+              </li>
+            </ul>
+        </div>
+    </nav>
     <div class="sidebar"> </div>
+
     <div id="match-terminal">
         <div id="match-header"><span>Team A</span> vs. <span>Team B</span></div>
         <div id="match-timer">match starts in <span id="countdown">25m09s</span></div>
