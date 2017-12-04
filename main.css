@@ -28,6 +28,10 @@ h1{
     font-size: 150%;
 }
 
+h2.osixes{
+    color:#ffffff;
+}
+
 /* content */
 .content {
     width:960px;
