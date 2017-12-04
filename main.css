@@ -3,7 +3,7 @@ head {
     height:50px;
     display:block;
 }
-body {
+.osixes-background {
     background-image: url("imgs/O6_website_HomePage_Final_BackgroundLogo.png");
     background-size: 75%;
     background-repeat: no-repeat;
