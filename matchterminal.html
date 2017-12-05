@@ -38,15 +38,39 @@
         </div>
     </nav>
     <div class="sidebar"> </div>
+    
+    <div classe="container" id="match-terminal">
+        <div class="row">
+            <div id="match-header"><span>Team A</span> vs. <span>Team B</span></div>
+            <div id="match-timer">match starts in <span id="countdown">25m09s</span></div>
+        </div>
+        <div class="row">
+            <div class="card col">
+                <div class="card-body">
+                    <h3 class="card-title">Lock In A Map</h3>
+                    
+                    <div class="row">
+                        <div class="card-group">
+                            <div class="card">
+                                <div class="card-header">
+                                    <span class="team-maplock-header">Team A</span>
+                                </div>
+                                <a id="teamA-maplock" class="btn" href="#">
+                                </a>
+                            
+                            </div>
 
-    <div id="match-terminal">
-        <div id="match-header"><span>Team A</span> vs. <span>Team B</span></div>
-        <div id="match-timer">match starts in <span id="countdown">25m09s</span></div>
-        <div class="map-selection  headerHeight">
-            <img id="Number1" src ="imgs/matchterminal/O6_V3_MatchTerminal_Number1.png" alt="1" class=""/>
-            <div id="lock-in" class="headerText headerHeight ">
-                <h2>Lock In A Map</h2>
+                            <div class="card">
+                                <div class="card-header">
+                                    <span class="team-maplock-header">Team B</span>
+                                </div>
+                                <a id="teamB-maplock" class="btn" href="#"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        
         </div>
         
         <! MAP LOCK IN BUTTONS: Buttons for teams to lock in single maps >
@@ -60,6 +84,8 @@
                 <button id="teamB-maplock" ></button>
             </div>
         </div>
+        
+        
         
         <div class="map-selection  headerHeight">
             <img id="Number1" src ="imgs/matchterminal/O6_V3_MatchTerminal_Number1.png" alt="1" class=""/>
