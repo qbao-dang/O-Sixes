@@ -39,86 +39,70 @@
     </nav>
     <div class="sidebar"> </div>
     
-    <div classe="container" id="match-terminal">
+    <div classe="container">
         <div class="row">
-            <div id="match-header"><span>Team A</span> vs. <span>Team B</span></div>
+            <div id="match-header">
+                <h1><span>Team A</span> vs. <span>Team B</span></h1>
+            </div>
             <div id="match-timer">match starts in <span id="countdown">25m09s</span></div>
         </div>
-        <div class="row">
-            <div class="card col">
-                <div class="card-body">
-                    <h3 class="card-title">Lock In A Map</h3>
-                    
-                    <div class="row">
-                        <div class="card-group">
-                            <div class="card">
-                                <div class="card-header">
-                                    <span class="team-maplock-header">Team A</span>
-                                </div>
-                                <a id="teamA-maplock" class="btn" href="#">
-                                </a>
-                            
+        <div class="row mb-2">
+            <h2 class="matchterminal-header2">Lock In A Map</h2>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md">
+                <div class="row">
+                    <div class="card-group">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="team-maplock-header">Team A</span>
                             </div>
+                            <a id="teamA-maplock" class="btn" href="#">
+                            </a>
 
-                            <div class="card">
-                                <div class="card-header">
-                                    <span class="team-maplock-header">Team B</span>
-                                </div>
-                                <a id="teamB-maplock" class="btn" href="#"></a>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="team-maplock-header">Team B</span>
                             </div>
+                            <a id="teamB-maplock" class="btn" href="#"></a>
                         </div>
                     </div>
                 </div>
             </div>
-        
         </div>
         
-        <! MAP LOCK IN BUTTONS: Buttons for teams to lock in single maps >
-        <div id="map-lockin">
-            <div id="lockin-TeamA" class="map-lock">
-                <div class="team-maplock-header">Team A</div>
-                <button id="teamA-maplock"></button>
-            </div>
-            <div id="lockin-TeamB" class="map-lock">
-                <div class="team-maplock-header">Team B</div>
-                <button id="teamB-maplock" ></button>
-            </div>
+        <div class="row mb-2">
+            <h2 class="matchterminal-header2">Ban Maps</h2>
         </div>
         
-        
-        
-        <div class="map-selection  headerHeight">
-            <img id="Number1" src ="imgs/matchterminal/O6_V3_MatchTerminal_Number1.png" alt="1" class=""/>
-            <div id="lock-in" class="headerText headerHeight ">
-                <h2>Ban Maps</h2>
-            </div>
-        </div>
-    </div>
     
-    <! MODALS USED FOR MAP LOCK IN (STEP 1)>
-    <div id="maplock_ModalA" class="modal">
-          <!-- Modal content -->
-          <div class="modal-content">
-            <div><span class="close">&times;</span></div>
-            <div>
-                <div id="maplock-assaultA" class="modal-maplock-div container-check">
-                    <span class="header-maptype">Assault</span>
-                    <ul>
-                        <li class="maplist-item">Hanamura</li>
-                        <li class="maplist-item">Horizon Lunar Colony</li>
-                        <li class="maplist-item">Temple of Anubis</li>
-                        <li class="maplist-item">Volskaya Industries</li>
-                    </ul>
+        <! MODALS USED FOR MAP LOCK IN (STEP 1)>
+        <div id="maplock_ModalA" class="modal">
+              <!-- Modal content -->
+              <div class="modal-content">
+                <div><span class="close">&times;</span></div>
+                <div>
+                    <div id="maplock-assaultA" class="modal-maplock-div container-check">
+                        <span class="header-maptype">Assault</span>
+                        <ul>
+                            <li class="maplist-item">Hanamura</li>
+                            <li class="maplist-item">Horizon Lunar Colony</li>
+                            <li class="maplist-item">Temple of Anubis</li>
+                            <li class="maplist-item">Volskaya Industries</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-          </div>
-    </div>
-    <div id="maplock_ModalB" class="modal">
-          <!-- Modal content -->
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Some text in the Modal B..</p>
-          </div>
+              </div>
+        </div>
+        <div id="maplock_ModalB" class="modal">
+              <!-- Modal content -->
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Some text in the Modal B..</p>
+              </div>
+        </div>
     </div>
 </body>
 

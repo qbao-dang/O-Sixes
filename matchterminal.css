@@ -71,6 +71,11 @@ h2 {
     width:400px;
     text-align:center;
 }
+
+.matchterminal-header2 {
+    color:white;
+}
+
 #teamA-maplock, #teamB-maplock {
     width:300px;
 }
