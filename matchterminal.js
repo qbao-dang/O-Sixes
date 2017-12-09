@@ -33,3 +33,60 @@ function set_MapLock() {
         }
     }
 }
+
+function set_BanMapButtons(){
+    $("#Hanamura").click(function(){
+        $("#Hanamura").hide();
+    });
+    $("#Horizon-Lunar-Colony").click(function(){
+        $("#Horizon-Lunar-Colony").hide();
+    });
+    $("#Temple-of-Anubis").click(function(){
+        $("#Temple-of-Anubis").hide();
+    });
+    $("#Volskaya-Industries").click(function(){
+        $("#Volskaya-Industries").hide();
+    });
+    
+    $("#Blizzard-World").click(function(){
+        $("#Blizzard-World").hide();
+    });
+    $("#Eichenwalde").click(function(){
+        $("#Eichenwalde").hide();
+    });
+    $("#Hollywood").click(function(){
+        $("#Hollywood").hide();
+    });
+    $("#Kings-Row").click(function(){
+        $("#Kings-Row").hide();
+    });
+    $("#Numbani").click(function(){
+        $("#Numbani").hide();
+    });
+    
+    $("#Dorado").click(function(){
+        $("#Dorado").hide();
+    });
+    $("#Junkertown").click(function(){
+        $("#Junkertown").hide();
+    });
+    $("#Route-66").click(function(){
+        $("#Route-66").hide();
+    });
+    $("#Watchpoint-Gibraltar").click(function(){
+        $("#Watchpoint-Gibraltar").hide();
+    });
+    
+    $("#Ilios").click(function(){
+        $("#Ilios").hide();
+    });
+    $("#Lijiang-Tower").click(function(){
+        $("#Lijiang-Tower").hide();
+    });
+    $("#Nepal").click(function(){
+        $("#Nepal").hide();
+    });
+    $("#Oasis").click(function(){
+        $("#Oasis").hide();
+    });
+}
