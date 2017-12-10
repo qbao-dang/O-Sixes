@@ -4,8 +4,8 @@ function set_MapLock() {
     var modalB = document.getElementById('maplock_ModalB');
 
     // Get the button that opens the modal
-    var btnA = document.getElementById("teamA-maplock");
-    var btnB = document.getElementById("teamB-maplock");
+    var btnA = document.getElementById("TeamA-Lock");
+    var btnB = document.getElementById("TeamB-Lock");
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
