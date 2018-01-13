@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/qbao-dang/O-Sixes#readme",
   "dependencies": {
-    "blizzard.js": "^2.1.0"
+    "blizzard.js": "^2.1.0",
+    "properties-reader": "0.0.16"
   }
 }
