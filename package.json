@@ -1,0 +1,23 @@
+{
+  "name": "o-sixes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qbao-dang/O-Sixes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qbao-dang/O-Sixes/issues"
+  },
+  "homepage": "https://github.com/qbao-dang/O-Sixes#readme",
+  "dependencies": {
+    "blizzard.js": "^2.1.0"
+  }
+}
