@@ -19,6 +19,13 @@
   "homepage": "https://github.com/qbao-dang/O-Sixes#readme",
   "dependencies": {
     "blizzard.js": "^2.1.0",
-    "properties-reader": "0.0.16"
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-battlenet-oauth": "0.0.5",
+    "express-session": "^1.15.6",
+    "node-uuid": "^1.4.8",
+    "properties-reader": "0.0.16",
+    "querystring": "^0.2.0",
+    "request": "^2.83.0"
   }
 }
