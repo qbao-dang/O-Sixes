@@ -1,0 +1,12 @@
+/* CSS for Leagues.HTML */
+
+/* Page global styles*/
+h2 {
+    margin-top: 10px;
+}
+
+/*League schedule button styling*/
+.btn-limits {
+    max-width:400px;
+    min-width:350px;
+}

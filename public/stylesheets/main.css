@@ -1,0 +1,40 @@
+
+/* Global Styles */
+html, body {
+   margin:0;
+   padding:0;
+   height:100%;
+}
+
+.side-bar h1 {
+    font-size: 2rem;
+    margin-bottom: -5px;
+}
+
+.osixes-background {
+    background-image: url("imgs/O6_website_HomePage_Final_BackgroundLogo.png");
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-color: #333333;
+    position:relative;
+
+}
+
+#wrapper {
+    position: relative;
+    min-height:100%;
+    
+}
+
+#body {
+    padding-bottom:180px;
+}
+
+footer {
+    height: 150px;
+    vertical-align: baseline;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
