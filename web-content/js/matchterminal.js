@@ -1,8 +1,24 @@
 var mapButtons = document.querySelectorAll(".btn-map-select");  // Grab all map buttons
 var mapA = document.querySelector("#teamA-locked-map");
 
-// Clear session memory
-sessionStorage.clear();
+$(document).ready(function(){
+    // Clear session memory
+    sessionStorage.clear(); 
+    // Assign onclick events to btn-map-select buttons
+    $(".btn-map-select").click(function(){
+        console.log("You chose " + $(this).attr("value"));
+        
+        // Reset state of all map select buttons
+        $(".btn-map-select .alpha-bg").removeClass("w3-bottombar w3-border-red");
+        // Set state of clicked button to "active"
+        $(this).find(".alpha-bg").toggleClass("w3-bottombar w3-border-red");
+        
+        // set session map variable
+        sessionStorage.setItem('map1',$(this).attr("value"));
+        
+    });
+    
+});
 
 function convertMapName(key) {
     // note: not all maps need to be converted
@@ -24,17 +40,6 @@ function convertMapName(key) {
 }
 
 function lockInMap() {
-    mapButtons.forEach(function (item, index) {
-        // check if button is in ACTIVE state
-        if (item.classList.contains("active")) {
-            console.log(item.getAttribute("value"));
-            // set session storage value for map equal to button value
-            sessionStorage.setItem('map1',item.getAttribute("value"));
-            // clear active state
-            item.classList.remove("active");
-        }
-
-    });
     // Check if user selected a map
     if (sessionStorage.getItem('map1')){
         disableLockedMapSelection();    // disable button since it is locked out now   
