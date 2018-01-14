@@ -1,21 +1,16 @@
 const router = require('express').Router();
-
-//auth login
-router.get('/signin', (req, res)=>{
-  res.render('');
-})
+const passport = require('passport');
 
 //auth Logout
 router.get('/logout', (req, res) => {
 //handle with passport
-  req.logout();
+  //req.logout();
   res.redirect('/');
 });
 
 //auth with Bnet
-router.get('/bnet', (req, res) => {
-    //handle with Passport
-    res.send('login with bnet');
-});
+router.get('/bnet', passport.authenticate ('bnet',{
+    scope:['profile']
+})); 
 
-module.export = router;
+module.exports = router;

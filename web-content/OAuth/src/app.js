@@ -7,7 +7,7 @@ var passport = require('passport');
 var BnetStrategy = require('passport-bnet').Strategy;
 
 //Get keys
-var PropertiesReader = require('PropertiesReader');
+var PropertiesReader = require('properties-reader');
 var properties =  PropertiesReader('../resources/conf.properties');
 var consumerKey = properties.get('consumerKey');
 var consumerSecret = properties.get('consumerSecret');
@@ -24,7 +24,7 @@ passport.use(
     {clientID: consumerKey,
       clientSecret: consumerSecret,
       region: "us";
-      callbackURL: "https://localhost:3000/auth/bnet/callback"},
+      callbackURL: "https://localhost:8080/bnet/callback"},
 
       function(accessToken, refreshToken, profile, done){
         console.log(profile)
@@ -60,7 +60,7 @@ passport.authenticate('bnet'));
 app.get('/bnet/callback',
 passport.authenticate('bnet', { failureRedirect: '/' }),
 function(req, res){
-  res.redirect('http://localhost:3000');
+  res.redirect('http://localhost:8080/home');
 });
 
 app.get('/', function(req, res) {
@@ -85,5 +85,3 @@ app.get('/logout', function(req, res) {
 var server = app.listen(3000, function() {
   console.log('Listening on port %d', server.address().port);
 });
-
-app.listen(8000);
