@@ -18,14 +18,13 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 
 //require routes
-var
 
 passport.use(
   new BnetStrategy(
     {clientID: consumerKey,
       clientSecret: consumerSecret,
       region: "us";
-      callbackURL: "https://localhost:3000/auth/bnet/callback"},  
+      callbackURL: "https://localhost:3000/auth/bnet/callback"},
 
       function(accessToken, refreshToken, profile, done){
         console.log(profile)
@@ -38,6 +37,8 @@ passport.use(
 
 
 var app = express();
+
+app.
 
 // configure Express
 app.use(cookieParser());
@@ -84,3 +85,5 @@ app.get('/logout', function(req, res) {
 var server = app.listen(3000, function() {
   console.log('Listening on port %d', server.address().port);
 });
+
+app.listen(8000);
