@@ -3,21 +3,21 @@ var mapA = document.querySelector("#teamA-locked-map");
 
 $(document).ready(function(){
     // Clear session memory
-    sessionStorage.clear(); 
+    sessionStorage.clear();
     // Assign onclick events to btn-map-select buttons
     $(".btn-map-select").click(function(){
         console.log("You chose " + $(this).attr("value"));
-        
+
         // Reset state of all map select buttons
         $(".btn-map-select .alpha-bg").removeClass("w3-bottombar w3-border-red");
         // Set state of clicked button to "active"
         $(this).find(".alpha-bg").toggleClass("w3-bottombar w3-border-red");
-        
+
         // set session map variable
         sessionStorage.setItem('map1',$(this).attr("value"));
-        
+
     });
-    
+
 });
 
 function convertMapName(key) {
@@ -35,19 +35,19 @@ function convertMapName(key) {
         case "kings" : return "King's Row";
         // control maps
         case "lijiang" : return "Lijiang Tower";
-        default: return key;       
+        default: return key;
     }
 }
 
 function lockInMap() {
     // Check if user selected a map
     if (sessionStorage.getItem('map1')){
-        disableLockedMapSelection();    // disable button since it is locked out now   
+        disableLockedMapSelection();    // disable button since it is locked out now
 
         // update map lock button to show selected map
         let mapOne = sessionStorage.getItem("map1");
         mapA.innerHTML = convertMapName(mapOne);
-        
+
         // update lock state
         let mapOneBadge = document.querySelector("#teamA-header .badge");
         mapOneBadge.classList.remove("badge-warning");
@@ -55,15 +55,15 @@ function lockInMap() {
         mapOneBadge.innerHTML ="Locked";
 
         // update server with map A selection
-        sendMapOne(mapOne);  
+        sendMapOne(mapOne);
     } else {
         document.getElementById("map-select-error").classList.toggle("d-none");
-    }   
+    }
 }
 
 function disableLockedMapSelection() {
     var lockedMapButton = document.querySelector("#teamA-locked-map");
-    
+
     lockedMapButton.removeAttribute("data-toggle");
     lockedMapButton.removeAttribute("data-target");
 }
@@ -73,3 +73,8 @@ function sendMapOne(mapOne) {
     console.log("Map 1 (" + mapOne + ") has been sent to the server!");
 }
 
+// SSE (TEST ONLY)
+var es = new EventSource("/matchterminal");
+es.onmessage = function (event) {
+  console.log(event.data);
+};
