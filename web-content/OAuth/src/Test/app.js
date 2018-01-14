@@ -35,11 +35,6 @@ app.get('/home', (req, res) =>{
     res.render("home")
 });
 
-app.get('/bnet/callback',
-passport.authenticate('bnet', { failureRedirect: '/' }),
-function(req, res){
-  res.redirect('https://localhost:8080/home');
-});
 
 app.listen(8080, () =>{
   console.log('listening port 8080');

@@ -12,9 +12,11 @@ passport.use(
   new BnetStrategy(
     { clientID: consumerKey,
       clientSecret: consumerSecret,
-      callbackURL: "https://www.blizzard.com/en-gb/"},
+      callbackURL: "/bnet/callback"},
 
-      function(accessToken, refreshToken, profile, done){
+      (accessToken, refreshToken, profile, done) =>{
+        console.log(accessToken)
+        console.log(profile;)
         process.nextTick(function(){
           return done(null, profile);
         });
