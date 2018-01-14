@@ -9,10 +9,20 @@
     height:100px;
 }
 
+.map-select {
+    max-width:400px;
+    display: block;
+}
+
 #match-time {
     font-size: 1.75rem;
 }
+
 /* Modal styles */
+.btn-map-select{
+    height: 5rem;
+}
+
 #lockedMap-Modal h6 {
     margin-top: 20px;
     margin-bottom:20px;
