@@ -1,77 +1,12 @@
 /* CSS for Leagues.HTML */
 
-.league-sched{
-    width:250px;
-    display:inline-block;
-    float:left;
-    margin-right:10px;
-    
-    padding-top:20px;
+/* Page global styles*/
+h2 {
+    margin-top: 10px;
 }
 
-.league-sched-header{
-    height:10px;
-    width:230px;
-    padding:20px 10px;
-
-    background-color:#eee;
-    font-family:"Arial Bold";
-    font-size:16px;
-    border-bottom-style:solid;
-    border-bottom-width: thin;
-    border-color:#9999cc;
+/*League schedule button styling*/
+.btn-limits {
+    max-width:400px;
+    min-width:350px;
 }
-
-.league-name {
-    float:left;
-    font-family: "Arial Bold";
-    font-size: 16px;
-}
-.league-data, .indiv-join,.team-join{
-    float:right;
-    font-size: 12px;
-    text-align:right;
-}
-
-
-/* Style the buttons that are used to open and close the accordion panel */
-button.accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 16px;
-    width: 100%;
-    height: 55px;
-    text-align: left;
-    border: none;
-    outline: none;
-    transition: 0.4s;
-}
-
-button.accordion.active, button.accordion:hover{
-    background-color: #ccc;
-}
-
-/* Style the accordion panel. Note: hidden by default */
-div.registration-panel {
-    background-color: transparent;
-    display: none;
-    padding-bottom:35px;
-}
-button.indiv-join, button.team-join {
-    background-color:#eee;
-    height:35px;
-    border:none;
-    outline:none;
-    cursor: pointer;
-    float:right;
-    margin-left:2px;
-    margin-bottom:5px;
-}
-
-button.indiv-join.active, button.team-join.active, button.indiv-join:hover, button.team-join:hover {
-        background-color: #9999cc;
-}
-
-
->>>>>>> 7955889cb00f4d86f836753c53912de176faa621

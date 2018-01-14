@@ -1,4 +1,10 @@
 
+/* Global Styles */
+.side-bar h1 {
+    font-size: 2rem;
+    margin-bottom: -5px;
+}
+
 .osixes-background {
     background-image: url("imgs/O6_website_HomePage_Final_BackgroundLogo.png");
     background-size: 75%;

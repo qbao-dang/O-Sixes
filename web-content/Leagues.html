@@ -5,196 +5,158 @@
     <link rel="stylesheet" href="leagues.css">
 
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- jQuery from Google -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-    <!-- Latest compiled JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-    <script src="leagues.js"></script>
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta lang="en">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- jQuery from Google -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/leagues.css">
+        <!-- Latest compiled JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        <title>O-Sixes | Find a League</title>
+    </head>
 
 
-<body class="osixes-background" onload='accordionSetup(); loadLeagueData();'>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
-            <a class="navbar-brand" href="index.html">
-                <img src="imgs/O6_Logo_V3.png" width = "68" height="30" alt="O-Sixes">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light">
+            <a class="navbar-brand" href="home.html">O-Sixes</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="Leagues.html">Leagues <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="matchterminal.html">Match Terminal</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="leaderboards.html">Leaderboards</a>
-                  </li>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Rulebook</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="matchterminal.html">Match Terminal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">FAQ</a>
+                    </li>
+
                 </ul>
             </div>
         </nav>
-
-    <div class="container">
-
-        <div class="sidebar"></div>
-        <div class="row">
-            <h2 class="osixes pt-3 pb-1">League Sign-Up</h2>
-        </div>
-        <div class="row">
-            <!League sections>
-            
-            <div class="card col-sm-6">
-                <div class="card-body" id="SAT" role="tablist">
-                    <h3 class="card-title">Saturday Leagues</h3>
-                    <div class="card" >
-                        <div class="card-header" role="tab" id ="headingOne">
-                              <h5 class="mb-0">
-                                <a data-toggle="collapse" href="#SAT1" aria-expanded="true" aria-controls="SAT1">
-                                    <span class="league-name">SAT League (untitled)</span>
-                                    <span class="league-data">
-                                        <span class="league-time">8:00PM</span>
-                                    </span>
-                                </a>
-                              </h5>
-                        </div>
-                        <div id="SAT1" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#SAT">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-action indiv-join">
-                                    Join As Individual (<span class="indiv-spots">5</span> spots)
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action team-join">
-                                    Join As Team (<span class="team-spots ">5</span> spots)
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" >
-                        <div class="card-header" role="tab" id ="headingTwo">
-                              <h5 class="mb-0">
-                                <a data-toggle="collapse" href="#SAT2" aria-expanded="true" aria-controls="SAT2">
-                                    <span class="league-name">SAT League (untitled)</span>
-                                    <span class="league-data">
-                                        <span class="league-time">8:00PM</span>
-                                    </span>
-                                </a>
-                              </h5>
-                        </div>
-                        <div id="SAT2" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#SAT">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-action indiv-join">
-                                    Join As Individual (<span class="indiv-spots">5</span> spots)
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action team-join">
-                                    Join As Team (<span class="team-spots ">5</span> spots)
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" >
-                        <div class="card-header" role="tab" id ="headingTwo">
-                              <h5 class="mb-0">
-                                <a data-toggle="collapse" href="#SAT3" aria-expanded="true" aria-controls="SAT3">
-                                    <span class="league-name">SAT League (untitled)</span>
-                                    <span class="league-data">
-                                        <span class="league-time">8:00PM</span>
-                                    </span>
-                                </a>
-                              </h5>
-                        </div>
-                        <div id="SAT3" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#SAT">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-action indiv-join">
-                                    Join As Individual (<span class="indiv-spots">5</span> spots)
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action team-join">
-                                    Join As Team (<span class="team-spots ">5</span> spots)
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+    </header>
+    <div class="row">
+            <div class="col-md-3 d-none d-md-block">
+                <div class="side-bar container">
+                    <h1 class="display-4">Teams</h1>
+                    <ul class="list-group">
+                        <li class="list-group-item border-0 disabled">You're not on a team yet</li>
+                    </ul>
+                    <a class="btn btn-primary btn-block" href="leagues.html" type="button" role="button" title="Go to Leagues page">Find a League</a>
                 </div>
             </div>
-            <div class="card col-sm-6">
-                <div class="card-body" id="SUN" role="tablist">
-                    <h3 class="card-title">Sunday Leagues</h3>
-                    <div class="card" >
-                        <div class="card-header" role="tab" id ="headingOne">
-                              <h5 class="mb-0">
-                                <a data-toggle="collapse" href="#SUN1" aria-expanded="true" aria-controls="SUN1">
-                                    <span class="league-name">SAT League (untitled)</span>
-                                    <span class="league-data">
+            <div class="col-md-9">
+                <div class="main container">
+                    <h1>Find a League</h1>
+                    <section class="float-left mr-3">
+                        <h2>Wednesday Leagues</h2>
+                        <dl class="list-group" id="wed" data-children=".league-item">
+                            <div class="league-item">
+                                <button class="list-group-item btn btn-inline text-left w-100 btn-limits" data-toggle="collapse" data-parent="#wed" href="#wed1" role="button" aria-expanded="false" aria-controls="wed1">
+                                    <dt>League 01</dt>
+                                    <dd class=" d-flex justify-content-between">
                                         <span class="league-time">8:00PM</span>
-                                    </span>
-                                </a>
-                              </h5>
-                        </div>
-                        <div id="SUN1" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#SUN">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-action indiv-join">
-                                    Join As Individual (<span class="indiv-spots">5</span> spots)
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action team-join">
-                                    Join As Team (<span class="team-spots ">5</span> spots)
-                                </a>
+                                        <span><span class="league-indiv-spots">5</span> individual spots | <span class="league-team-spots">3</span> team spots</span>
+                                    </dd>
+                                </button>
+                                <div class="container collapse clearfix mt-1 mb-2 px-0" id="wed1" role="tabpanel">
+                                    <button class="btn btn-primary float-right ml-2">Join as Individual</button>
+                                    <button class="btn btn-primary float-right">Join as a Team</button>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="card" >
-                        <div class="card-header" role="tab" id ="headingTwo">
-                              <h5 class="mb-0">
-                                <a data-toggle="collapse" href="#SUN2" aria-expanded="true" aria-controls="SUN2">
-                                    <span class="league-name">SAT League (untitled)</span>
-                                    <span class="league-data">
+                            <div class="league-item">
+                                <button class="list-group-item btn btn-inline text-left w-100 btn-limits" data-toggle="collapse" data-parent="#wed" href="#wed2" role="button" aria-expanded="false" aria-controls="wed2">
+                                    <dt>League 02</dt>
+                                    <dd class=" d-flex justify-content-between">
                                         <span class="league-time">8:00PM</span>
-                                    </span>
-                                </a>
-                              </h5>
-                        </div>
-                        <div id="SUN2" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#SUN">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-action indiv-join">
-                                    Join As Individual (<span class="indiv-spots">5</span> spots)
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action team-join">
-                                    Join As Team (<span class="team-spots ">5</span> spots)
-                                </a>
+                                        <span><span class="league-indiv-spots">5</span> individual spots | <span class="league-team-spots">3</span> team spots</span>
+                                    </dd>
+                                </button>
+                                <div class="container collapse clearfix mt-1 mb-2 px-0" id="wed2" role="tabpanel">
+                                    <button class="btn btn-primary float-right ml-2">Join as Individual</button>
+                                    <button class="btn btn-primary float-right">Join as a Team</button>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="card" >
-                        <div class="card-header" role="tab" id ="headingTwo">
-                              <h5 class="mb-0">
-                                <a data-toggle="collapse" href="#SUN3" aria-expanded="true" aria-controls="SUN3">
-                                    <span class="league-name">SAT League (untitled)</span>
-                                    <span class="league-data">
+                            <div class="league-item">
+                                <button class="list-group-item btn btn-inline text-left w-100 btn-limits" data-toggle="collapse" data-parent="#wed" href="#wed3" role="button" aria-expanded="false" aria-controls="wed3">
+                                    <dt>League 03</dt>
+                                    <dd class=" d-flex justify-content-between">
                                         <span class="league-time">8:00PM</span>
-                                    </span>
-                                </a>
-                              </h5>
-                        </div>
-                        <div id="SUN3" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#SUN">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-action indiv-join">
-                                    Join As Individual (<span class="indiv-spots">5</span> spots)
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action team-join">
-                                    Join As Team (<span class="team-spots ">5</span> spots)
-                                </a>
+                                        <span><span class="league-indiv-spots">5</span> individual spots | <span class="league-team-spots">3</span> team spots</span>
+                                    </dd>
+                                </button>
+                                <div class="container collapse clearfix mt-1 mb-2 px-0" id="wed3" role="tabpanel">
+                                    <button class="btn btn-primary float-right ml-2">Join as Individual</button>
+                                    <button class="btn btn-primary float-right">Join as a Team</button>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        </dl>
+                    </section>
+                    <section class="float-left mr-3">
+                        <h2>Saturday Leagues</h2>
+                        <dl class="list-group" id="sat" data-children=".league-item">
+                            <div class="league-item">
+                                <button class="list-group-item btn btn-inline text-left w-100 btn-limits" data-toggle="collapse" data-parent="#sat" href="#sat1" role="button" aria-expanded="false" aria-controls="sat1">
+                                    <dt>League 01</dt>
+                                    <dd class=" d-flex justify-content-between">
+                                        <span class="league-time">8:00PM</span>
+                                        <span><span class="league-indiv-spots">5</span> individual spots | <span class="league-team-spots">3</span> team spots</span>
+                                    </dd>
+                                </button>
+                                <div class="container collapse clearfix mt-1 mb-2 px-0" id="sat1" role="tabpanel">
+                                    <button class="btn btn-primary float-right ml-2">Join as Individual</button>
+                                    <button class="btn btn-primary float-right">Join as a Team</button>
+                                </div>
+                            </div>
+                            <div class="league-item">
+                                <button class="list-group-item btn btn-inline text-left w-100 btn-limits" data-toggle="collapse" data-parent="#sat" href="#sat2" role="button" aria-expanded="false" aria-controls="sat2">
+                                    <dt>League 02</dt>
+                                    <dd class=" d-flex justify-content-between">
+                                        <span class="league-time">8:00PM</span>
+                                        <span><span class="league-indiv-spots">5</span> individual spots | <span class="league-team-spots">3</span> team spots</span>
+                                    </dd>
+                                </button>
+                                <div class="container collapse clearfix mt-1 mb-2 px-0" id="sat2" role="tabpanel">
+                                    <button class="btn btn-primary float-right ml-2">Join as Individual</button>
+                                    <button class="btn btn-primary float-right">Join as a Team</button>
+                                </div>
+                            </div>
+                            <div class="league-item">
+                                <button class="list-group-item btn btn-inline text-left w-100 btn-limits" data-toggle="collapse" data-parent="#sat" href="#sat3" role="button" aria-expanded="false" aria-controls="sat3">
+                                    <dt>League 03</dt>
+                                    <dd class=" d-flex justify-content-between">
+                                        <span class="league-time">8:00PM</span>
+                                        <span><span class="league-indiv-spots">5</span> individual spots | <span class="league-team-spots">3</span> team spots</span>
+                                    </dd>
+                                </button>
+                                <div class="container collapse clearfix mt-1 mb-2 px-0" id="sat3" role="tabpanel">
+                                    <button class="btn btn-primary float-right ml-2">Join as Individual</button>
+                                    <button class="btn btn-primary float-right">Join as a Team</button>
+                                </div>
+                            </div>
+                        </dl>
+                    </section>
                 </div>
             </div>
     </div>
-
-   </div>
+    <footer class="mt-3 py-3 d-block bg-dark text-light absolute-bottom" role="contentinfo">
+        <p class="text-center small">Blizzard Entertainment is a trademark or registered trademark of Blizzard Entertainment, Inc., in the U.S. and/or other countries.</p>
+        <p class="text-center small">Overwatch is a trademark of Blizzard Entertainment, Inc., in the U.S. and/or other countries.</p>
+    </footer>
 
 </body> 
 
