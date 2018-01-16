@@ -1,24 +1,35 @@
 var mapButtons = document.querySelectorAll(".btn-map-select");  // Grab all map buttons
 var mapA = document.querySelector("#teamA-locked-map");
 
-$(document).ready(function(){
-    // Clear session memory
-    sessionStorage.clear();
-    // Assign onclick events to btn-map-select buttons
-    $(".btn-map-select").click(function(){
-        console.log("You chose " + $(this).attr("value"));
+function openServerConnection(){
+    // Open a connection
+    var stream = new EventSource("/sse");
 
-        // Reset state of all map select buttons
-        $(".btn-map-select .alpha-bg").removeClass("w3-bottombar w3-border-red");
-        // Set state of clicked button to "active"
-        $(this).find(".alpha-bg").toggleClass("w3-bottombar w3-border-red");
+    // When a connection is made
+    stream.onopen = function () {
+      console.log('Opened connection');
+    };
 
-        // set session map variable
-        sessionStorage.setItem('map1',$(this).attr("value"));
+    // When a connection could not be made
+    stream.onerror = function (event) {
+      console.log(event);
+    };
 
+    // When data is received
+    stream.onmessage = function (event) {
+      console.log(event.data);
+    };
+
+    // A connection was closed
+    stream.onclose = function (code, reason) {
+      console.log(code, reason);
+    };
+
+    // Close the connection when the window is closed
+    window.addEventListener('beforeunload', function() {
+      stream.close();
     });
-
-});
+};
 
 function convertMapName(key) {
     // note: not all maps need to be converted
@@ -78,3 +89,24 @@ var es = new EventSource("/matchterminal");
 es.onmessage = function (event) {
   console.log(event.data);
 };
+
+$(document).ready(function(){
+    // Clear session memory
+    sessionStorage.clear();
+
+    openServerConnection();   // open SSE connection with server
+
+    // Assign onclick events to btn-map-select buttons
+    $(".btn-map-select").click(function(){
+        console.log("You chose " + $(this).attr("value"));
+
+        // Reset state of all map select buttons
+        $(".btn-map-select .alpha-bg").removeClass("w3-bottombar w3-border-red");
+        // Set state of clicked button to "active"
+        $(this).find(".alpha-bg").toggleClass("w3-bottombar w3-border-red");
+
+        // set session map variable
+        sessionStorage.setItem('map1',$(this).attr("value"));
+    });
+
+});

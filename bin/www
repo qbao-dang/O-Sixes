@@ -9,6 +9,8 @@ var debug = require('debug')('o-sixes:server');
 var http = require('http');
 var SSE = require('sse');
 
+var clients = [];
+
 /**
  * Get port from environment and store in Express.
  */
@@ -26,10 +28,29 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(port, '127.0.0.1', function() {
+  // initialize the /sse route
+  var sse = new SSE(server);
+
+  // When a connection is made
+  sse.on('connection', function(stream) {
+    console.log('Opened connection.');
+    clients.push(stream);
+
+    // Send data back to the client
+    var json = JSON.stringify({ message: 'Gotcha'});
+    stream.send(json);
+    console.log('Sent: ' + json);
+
+    // The connection was closed
+    stream.on('close', function() {
+      clients.splice(clients.indexOf(stream), 1);
+      console.log('Closed connection.');
+    })
+  });
+});
 server.on('error', onError);
 server.on('listening', onListening);
-server.on('listen', onListen);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -91,12 +112,16 @@ function onListening() {
   debug('Listening on ' + bind);
 }
 
-/**
- * Event listener for HTTP server "listen" event.
- */
-function onListen() {
-  var sse = new SSE(server);
-  sse.on('connection', function(client) {
-    client.send('hi there!');
+// Every three seconds broadcast "{ message: 'Hello hello!' }" to all connected clients
+var broadcast = function() {
+  var json = JSON.stringify({ message: 'Hello hello!' });
+
+  console.log('about to fire...');
+
+  clients.forEach(function(stream) {
+    stream.send(json);
+    console.log('Sent: ' + json);
   });
 }
+
+setInterval(broadcast, 3000);
