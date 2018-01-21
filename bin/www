@@ -35,7 +35,7 @@ server.listen(port, '127.0.0.1', function() {
   // When a connection is made
   sse.on('connection', function(stream) {
     console.log('Opened connection.');
-    clients.push(stream);
+    clients.push(stream); // Stores stream
 
     // Send data back to the client
     var json = JSON.stringify({ message: 'Gotcha'});
