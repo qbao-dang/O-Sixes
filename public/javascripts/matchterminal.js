@@ -3,7 +3,7 @@ var mapA = document.querySelector("#teamA-locked-map");
 
 function openServerConnection(){
     // Open a connection
-    var stream = new EventSource("/sse");
+    var stream = new EventSource("/matchterminal/sse");
 
     // When a connection is made
     stream.onopen = function () {
@@ -24,6 +24,10 @@ function openServerConnection(){
     stream.onclose = function (code, reason) {
       console.log(code, reason);
     };
+    // Listen for newcontent events
+    stream.addEventListener('test', function(e) {
+      console.log(e.data);
+    }, false);
 
     // Close the connection when the window is closed
     window.addEventListener('beforeunload', function() {
@@ -85,10 +89,12 @@ function sendMapOne(mapOne) {
 }
 
 // SSE (TEST ONLY)
+/*
 var es = new EventSource("/matchterminal");
 es.onmessage = function (event) {
   console.log(event.data);
 };
+*/
 
 $(document).ready(function(){
     // Clear session memory

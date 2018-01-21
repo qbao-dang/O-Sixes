@@ -11,6 +11,7 @@ var home = require('./routes/home');
 var leagues = require('./routes/leagues');
 var matchterminal = require('./routes/matchterminal');
 
+
 var app = express();
 
 // view engine setup
@@ -31,6 +32,7 @@ app.use('/test', test);
 app.use('/home', home);
 app.use('/leagues', leagues);
 app.use('/matchterminal', matchterminal);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
