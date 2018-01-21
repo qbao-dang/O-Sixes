@@ -114,9 +114,7 @@ function onListening() {
 
 // Every three seconds broadcast "{ message: 'Hello hello!' }" to all connected clients
 var broadcast = function() {
-  var json = JSON.stringify({ message: 'Hello hello!' });
-
-  console.log('about to fire...');
+  var json = JSON.stringify({ message: 'Connection is still open!' });
 
   clients.forEach(function(stream) {
     stream.send(json);
