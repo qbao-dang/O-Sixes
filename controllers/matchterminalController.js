@@ -26,7 +26,7 @@ exports.sse = function(req, res, next){
   };
   next();
 };
-
+/*
 // Run broadcast (SSE TEST ONLY)
 exports.broadcastTest = function (req, res, next) {
 
@@ -36,7 +36,7 @@ exports.broadcastTest = function (req, res, next) {
 
   next();
 };
-
+*/
 exports.getMatchTerminal = function(req, res) {
   res.render('matchterminal');
 };
