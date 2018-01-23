@@ -5,27 +5,7 @@ var redis = require('redis'),
 
 
 // Middleware for server-sent events
-exports.sse = function(req, res, next){
-  var message_count;
-  req.socket.setTimeout(0);
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/event-stream');
-  res.setHeader('Cache-Control', 'no-cache');
-  res.setHeader('Connection', 'keep-alive');
-  message_count = 0;
-  res.json = function(obj, type){
-    res.write("id: " + message_count + "\n");
 
-    // Assign event type in resonse
-    if('string' === typeof type) {
-      res.write("event: " + type + "\n");
-    }
-    // Store passed data
-    res.write("data: " + JSON.stringify(obj) + "\n\n");
-    message_count += 1;
-  };
-  next();
-};
 /*
 // Run broadcast (SSE TEST ONLY)
 exports.broadcastTest = function (req, res, next) {

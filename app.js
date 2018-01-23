@@ -11,7 +11,6 @@ var session = require('express-session');
 var setUpPassport = require('./setuppassport'); // Set up passport for user authentication
 
 var index = require('./routes/index');
-var test = require('./routes/test');
 var home = require('./routes/home');
 var leagues = require('./routes/leagues');
 var matchterminal = require('./routes/matchterminal');
@@ -47,7 +46,6 @@ app.use(passport.initialize()); // Initialize passport module
 app.use(passport.session());  // Handle passport sessions
 
 app.use('/', index);
-app.use('/test', test);
 app.use('/home', home);
 app.use('/leagues', leagues);
 app.use('/matchterminal', matchterminal);
