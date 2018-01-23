@@ -22,12 +22,15 @@ module.exports = function() {
       switch(id){
         case 1:
           done(null, "UserA");
+          break;
         case 2:
           done(null, "UserB");
+          break;
         case 3:
           done(null, "UserC");
+          break;
         default:
-          done(new Error("No user"), "no user");
+          done(new Error("No user match for id " + id), "no user");
       }
   });
 
