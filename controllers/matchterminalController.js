@@ -4,33 +4,33 @@ var redis = require('redis'),
     publisherClient = redis.createClient();
 
 
-// Middleware for server-sent events
+/*
+ * CONTROLLER FUNCTIONS FOR HANDLING ROUTES
+ */
+ // GET /matchterminal controller
+exports.getMatchTerminal = function(req, res) {
+  // Determine MATCH ID
+  var match_id = grabMatchId(req.params.user);
+  // Determine team of user
+
+  // Check if user is the team captain
+
+  // Package necessary data for match terminal
+
+  // send user to specific match terminal
+  res.redirect('/match_id');
+};
+// GET /matchterminal/:match_id controller
+exports.getSpecificMatchTerminal = function (req, res) {
+  // Prepare data for view
+
+  // Render view
+};
 
 /*
-// Run broadcast (SSE TEST ONLY)
-exports.broadcastTest = function (req, res, next) {
-
-  var json = JSON.stringify({ message: 'Connection is still open!' });
-  res.json(json);
-  console.log('Sent: ' + json);
-
-  next();
-};
-*/
-exports.getMatchTerminal = function(req, res) {
-  res.render('matchterminal');
-};
-
-exports.createStream = function(req,res){
-  //send headers for event-stream connection
-  res.writeHead(200, {
-    'Content-Type': 'text/event-stream',
-    'Cache-Control': 'no-cache',
-    'Connection': 'keep-alive'
-  });
-  res.write('\n');
-};
-
+ * CONTROLLER FUNCTIONS FOR SSE
+ */
+// Controller function for creating the SUBSCRIBER client
 exports.setSubscriber = function(req, res) {
   req.socket.setTimeout(900000);
 
@@ -69,10 +69,35 @@ exports.setSubscriber = function(req, res) {
     subscriber.quit();
   });
 };
-
+// Controller function for firing a test event (DEV USE ONLY)
 exports.fireEvent = function(req, res, next) {
   publisherClient.publish( 'updates', ('"' + req.params.event_name + '" page visited') );
   res.writeHead(200, {'Content-Type': 'text/html'});
   res.write('All clients have received "' + req.params.event_name + '"');
   res.end();
+};
+exports.createStream = function(req,res){
+  //send headers for event-stream connection
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive'
+  });
+  res.write('\n');
+};
+/*
+ * LOCAL FUNCTIONS FOR CONTROLLER FUNCTIONS
+ */
+// Function to grab match_id based on user_id
+grabMatchId = function (user_id) {
+  // DUMMY CODE
+};
+// Function to grab team_id based on user_id
+grabTeamId = function(user_id) {
+  // DUMMY CODE
+};
+// Function to check if user is team captain of team
+isCaptain = function(username, team_id){
+  // DUMMY CODE
+
 };
