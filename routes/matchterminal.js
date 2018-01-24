@@ -10,7 +10,7 @@ router.get('/', matchTerminalController.getMatchTerminal);
 /* GET specific match terminal */
 router.get('/:matchid', matchTerminalController.getSpecificMatchTerminal)
 /* Create stream for match terminal */
-router.get('/sse', matchTerminalController.setSubscriber);
+router.get('/:matchid/sse', matchTerminalController.setSubscriber);
 /* Fire test event for match terminal */
 router.get('/fire-event/:event_name', matchTerminalController.fireEvent);
 

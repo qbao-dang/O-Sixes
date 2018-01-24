@@ -3,7 +3,7 @@ var mapA = document.querySelector("#teamA-locked-map");
 
 function openServerConnection(){
     // Open a connection
-    var stream = new EventSource("/matchterminal/sse");
+    var stream = new EventSource(window.location.pathname + "/sse");
 
     // When a connection is made
     stream.onopen = function () {
