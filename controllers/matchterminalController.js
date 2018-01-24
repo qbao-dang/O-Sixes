@@ -3,6 +3,16 @@ var express = require('express');
 var redis = require('redis'),
     publisherClient = redis.createClient();
 
+/*
+ * MIDDLEWARE
+ */
+// Function sets up user data for view to use
+exports.setViewerData = function (req, res, next) {
+  res.locals.currentUser = req.username;
+  res.locals.error = req.flash("error");
+  res.locals.infos = req.flash("info");
+  next();
+};
 
 /*
  * CONTROLLER FUNCTIONS FOR HANDLING ROUTES
@@ -10,21 +20,22 @@ var redis = require('redis'),
  // GET /matchterminal controller
 exports.getMatchTerminal = function(req, res) {
   // Determine MATCH ID
-  var match_id = grabMatchId(req.params.user);
-  // Determine team of user
-
-  // Check if user is the team captain
-
-  // Package necessary data for match terminal
-
+  var match_id = grabMatchId(req.user);
   // send user to specific match terminal
-  res.redirect('/match_id');
+  res.redirect('/matchterminal/'+ match_id);
 };
 // GET /matchterminal/:match_id controller
 exports.getSpecificMatchTerminal = function (req, res) {
+  // Determine team of user
+  var  myTeam = grabTeamId(req.user);
+  // Determine opposing team
+  var enemyTeam = grabEnemyTeamId(req.params.matchid, myTeam);
+  // Check if user is the team captain
+  var captainCheck = isCaptain(req.user, myTeam);
   // Prepare data for view
 
   // Render view
+  res.render('matchterminal', {teamA: myTeam, teamB: enemyTeam});
 };
 
 /*
@@ -88,16 +99,88 @@ exports.createStream = function(req,res){
 /*
  * LOCAL FUNCTIONS FOR CONTROLLER FUNCTIONS
  */
-// Function to grab match_id based on user_id
-grabMatchId = function (user_id) {
+// Function to grab match_id based on username
+grabMatchId = function (username) {
   // DUMMY CODE
+  switch (username) {
+    case "UserA":
+      return "wed8pm-123";
+      break;
+    case "UserB":
+      return "wed8pm-123";
+      break;
+    case "UserC":
+      return "wed9pm-43223";
+      break;
+    default:
+      return new Error("No match found for user " + username)
+  }
 };
-// Function to grab team_id based on user_id
-grabTeamId = function(user_id) {
+// Function to grab team_id based on username
+grabTeamId = function(username) {
   // DUMMY CODE
+  switch (username) {
+    case "UserA":
+      return "Astros";
+      break;
+    case "UserB":
+      return "Bashers";
+      break;
+    case "UserC":
+      return "Crashers";
+      break;
+    default:
+      return new Error("No team found.")
+  }
 };
+// Function to grab enemy team_id based on username
+grabEnemyTeamId = function(matchId, myTeam){
+  // DUMMY CODE
+  var teams = grabTeams(matchId);
+  // Determine which team user is on
+  if (teams[0] == myTeam ){
+    // Enemy team is the other team
+    return teams[1];
+  } else {
+    return teams[0];
+  }
+}
 // Function to check if user is team captain of team
-isCaptain = function(username, team_id){
+isCaptain = function (username, team_id){
   // DUMMY CODE
+  var teamCaptain = grabTeamCaptain(team_id);
 
+  if (teamCaptain == username){
+    return true;
+  } else {
+    return false;
+  }
 };
+// Function to grab team captain
+grabTeamCaptain = function (team_id) {
+  switch (team_id) {
+    case "Astros":
+      return "UserA";
+      break;
+    case "Bashers":
+      return "UserB";
+      break;
+    case "Crashers":
+      return "UserC";
+      break;
+    default:
+      return new Error("Team does not exist.")
+    }
+}
+
+grabTeams = function (matchId) {
+  // DUMMY CODE
+  switch(matchId){
+    case "wed8pm-123":
+      return ["Astros", "Bashers"];
+    case "wed9pm-43223":
+      return ["Crashers", "Dashers"];
+    default:
+      return new error("Match ID does not exist.");
+  }
+}
