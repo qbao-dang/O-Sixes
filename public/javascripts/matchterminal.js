@@ -3,7 +3,11 @@ var mapA = document.querySelector("#teamA-locked-map");
 
 function openServerConnection(){
     // Open a connection
-    var stream = new EventSource(window.location.pathname + "/sse");
+    var myPath = window.location.pathname;
+    var stream = new EventSource(myPath + "/sse");
+
+    // grab match_id
+    var match_id = myPath.split('/').pop();
 
     // When a connection is made
     stream.onopen = function () {
@@ -28,13 +32,27 @@ function openServerConnection(){
     stream.addEventListener('test', function(e) {
       console.log(e.data);
     }, false);
+    // Listen for attendance broadcast on specific stream
+    stream.addEventListener(match_id + '-attendance', function(e){
+      var connectedUser = e.data; // Store connected user
+      if (connectedUser == ) {
 
+      }
+    });
     // Close the connection when the window is closed
     window.addEventListener('beforeunload', function() {
       stream.close();
     });
 };
 
+// Function to send GET request for attendance
+function getAttendance() {
+  $.get(window.location.pathname +'/attendance');
+}
+// Handler for attendance broadcast
+function publishAttendanceHandler() {
+
+}
 function convertMapName(key) {
     // note: not all maps need to be converted
     switch (key) {
@@ -99,8 +117,10 @@ es.onmessage = function (event) {
 $(document).ready(function(){
     // Clear session memory
     sessionStorage.clear();
-
-    openServerConnection();   // open SSE connection with server
+    // open SSE connection with server
+    openServerConnection();
+    // Check in with server
+    getAttendance();
 
     // Assign onclick events to btn-map-select buttons
     $(".btn-map-select").click(function(){
