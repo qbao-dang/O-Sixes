@@ -20,6 +20,7 @@ router.post('/dummy-login', passport.authenticate("login",{
 
 router.get('/dummy-logout', function(req, res){
   req.logout();
+  res.clearCookie('username')
   res.redirect('/dummy-login');
 });
 module.exports = router;

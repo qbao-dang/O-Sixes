@@ -26,6 +26,8 @@ app.set('view engine', 'ejs');
 // Set up passport for user authentication
 setUpPassport();
 
+
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));

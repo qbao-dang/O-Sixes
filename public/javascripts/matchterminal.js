@@ -3,7 +3,12 @@ var mapA = document.querySelector("#teamA-locked-map");
 
 function openServerConnection(){
     // Open a connection
-    var stream = new EventSource("/matchterminal/sse");
+    var myPath = window.location.pathname;
+    var stream = new EventSource(myPath + "/sse");
+
+    // grab match_id
+    var match_id = myPath.split('/').pop();
+    //var connectSID = document.getCookie
 
     // When a connection is made
     stream.onopen = function () {
@@ -28,12 +33,36 @@ function openServerConnection(){
     stream.addEventListener('test', function(e) {
       console.log(e.data);
     }, false);
-
+    // Listen for attendance broadcast on specific stream
+    stream.addEventListener('attendance', function(e) {publishAttendanceHandler(e)});
     // Close the connection when the window is closed
     window.addEventListener('beforeunload', function() {
       stream.close();
     });
 };
+
+// Function to send GET request for attendance
+function getAttendance() {
+  $.get(window.location.href +'/attendance');
+}
+// Handler for attendance broadcast
+function publishAttendanceHandler(e) {
+  var myUserID = readCookie('username');
+  var connectedUser = e.data; // Store connected user
+  var teamB = sessionStorage.getItem('teamB');
+  if (teamB==null){
+    // New attendance information, so update data
+    // note: this stops the infinite loop of attendance checking
+    if (connectedUser != myUserID){
+      // Update page (TO DO)
+      console.log(connectedUser + " has connected!");
+      // Update session data
+      sessionStorage.setItem('teamB', connectedUser);
+      // send GET request for attendance to let the other user know
+      getAttendance();
+    }
+  }
+}
 
 function convertMapName(key) {
     // note: not all maps need to be converted
@@ -88,6 +117,18 @@ function sendMapOne(mapOne) {
     console.log("Map 1 (" + mapOne + ") has been sent to the server!");
 }
 
+/* Function for reading cookie (SRC = https://www.quirksmode.org/js/cookies.html) */
+function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
+
 // SSE (TEST ONLY)
 /*
 var es = new EventSource("/matchterminal");
@@ -99,8 +140,10 @@ es.onmessage = function (event) {
 $(document).ready(function(){
     // Clear session memory
     sessionStorage.clear();
-
-    openServerConnection();   // open SSE connection with server
+    // open SSE connection with server
+    openServerConnection();
+    // Check in with server
+    getAttendance();
 
     // Assign onclick events to btn-map-select buttons
     $(".btn-map-select").click(function(){
