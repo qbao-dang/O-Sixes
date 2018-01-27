@@ -37,7 +37,11 @@ exports.getSpecificMatchTerminal = function (req, res) {
   // Render view
   res.render('matchterminal', {teamA: myTeam, teamB: enemyTeam});
 };
-
+// GET /matchterminal/:matchid/attendance controller
+exports.getAttendance = function (req, res) {
+  res.status = 200;
+  res.send("Attendance acknowledged.")
+};
 /*
  * CONTROLLER FUNCTIONS FOR SSE
  */

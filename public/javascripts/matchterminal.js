@@ -34,7 +34,7 @@ function openServerConnection(){
       console.log(e.data);
     }, false);
     // Listen for attendance broadcast on specific stream
-    stream.addEventListener(match_id + '-attendance', publishAttendanceHandler(e));
+    stream.addEventListener(match_id + '-attendance', function(e) {publishAttendanceHandler(e)});
     // Close the connection when the window is closed
     window.addEventListener('beforeunload', function() {
       stream.close();
@@ -43,7 +43,7 @@ function openServerConnection(){
 
 // Function to send GET request for attendance
 function getAttendance() {
-  $.get(window.location.pathname +'/attendance');
+  $.get(window.location.href +'/attendance');
 }
 // Handler for attendance broadcast
 function publishAttendanceHandler(e) {
