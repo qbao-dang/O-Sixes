@@ -52,7 +52,7 @@ function getAttendance() {
 }
 // Handler for attendance broadcast
 function publishAttendanceHandler() {
-
+  var myUserID = readCookie('username');
 }
 function convertMapName(key) {
     // note: not all maps need to be converted
@@ -105,6 +105,18 @@ function disableLockedMapSelection() {
 function sendMapOne(mapOne) {
     // sends map A selection to server
     console.log("Map 1 (" + mapOne + ") has been sent to the server!");
+}
+
+/* Function for reading cookie (SRC = https://www.quirksmode.org/js/cookies.html) */
+function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
 }
 
 // SSE (TEST ONLY)
