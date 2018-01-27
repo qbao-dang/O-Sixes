@@ -48,7 +48,7 @@ exports.setSubscriber = function(req, res) {
   var messageCount = 0;
   var subscriber = redis.createClient();
 
-  subscriber.subscribe("updates");
+  subscriber.subscribe(req.params.matchid + "-updates");
 
   // In case we encounter an error...print it out to the console
   subscriber.on("error", function(err) {
@@ -80,7 +80,7 @@ exports.setSubscriber = function(req, res) {
     subscriber.quit();
   });
 };
-// Controller function for firing a test event (DEV USE ONLY)
+// Controller function for firing a test event (DEV USE ONLY - TO BE DELETED)
 exports.fireEvent = function(req, res, next) {
   publisherClient.publish( 'updates', ('"' + req.params.event_name + '" page visited') );
   res.writeHead(200, {'Content-Type': 'text/html'});
