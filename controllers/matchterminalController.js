@@ -39,6 +39,10 @@ exports.getSpecificMatchTerminal = function (req, res) {
 };
 // GET /matchterminal/:matchid/attendance controller
 exports.getAttendance = function (req, res) {
+  // Broadcast Attendance
+  console.log('Publishing that ' + req.user + ' has connected...')
+  publisherClient.publish((req.params.matchid + "-updates"), (req.user));
+  // Send response
   res.status = 200;
   res.send("Attendance acknowledged.")
 };
