@@ -40,11 +40,13 @@ exports.getSpecificMatchTerminal = function (req, res) {
 // GET /matchterminal/:matchid/attendance controller
 exports.getAttendance = function (req, res) {
   // Broadcast Attendance
-  console.log('Publishing that ' + req.user + ' has connected...')
-  publisherClient.publish((req.params.matchid + "-updates"), (req.user));
+  console.log('Publishing that ' + req.user + ' has connected to '+ req.params.matchid +'...');
+
+  var message = 'event: attendance\nid:  1\n' + 'data: ' + req.user + '\n\n';
+  publisherClient.publish((req.params.matchid + "-updates"), message);
   // Send response
   res.status = 200;
-  res.send("Attendance acknowledged.")
+  res.send("Attendance acknowledged.");
 };
 /*
  * CONTROLLER FUNCTIONS FOR SSE
@@ -66,10 +68,10 @@ exports.setSubscriber = function(req, res) {
   // When we receive a message from the redis connection
   subscriber.on("message", function(channel, message) {
     messageCount++; // Increment our message count
-
-    res.write('id: ' + messageCount + '\n');
-    res.write("data: " + message + '\n\n'); // Note the extra newline
+    console.log('Message sending: \n' + message);
+    res.write(message); // Note the extra newline
   });
+
 
   //send headers for event-stream connection
   res.writeHead(200, {

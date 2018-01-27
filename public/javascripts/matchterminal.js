@@ -34,7 +34,7 @@ function openServerConnection(){
       console.log(e.data);
     }, false);
     // Listen for attendance broadcast on specific stream
-    stream.addEventListener(match_id + '-attendance', function(e) {publishAttendanceHandler(e)});
+    stream.addEventListener('attendance', function(e) {publishAttendanceHandler(e)});
     // Close the connection when the window is closed
     window.addEventListener('beforeunload', function() {
       stream.close();
@@ -50,10 +50,10 @@ function publishAttendanceHandler(e) {
   var myUserID = readCookie('username');
   var connectedUser = e.data; // Store connected user
   var teamB = sessionStorage.getItem('teamB');
-  if (!!teamB){
+  if (teamB==null){
     // New attendance information, so update data
     // note: this stops the infinite loop of attendance checking
-    if (connectedUser != myUserId){
+    if (connectedUser != myUserID){
       // Update page (TO DO)
       console.log(connectedUser + " has connected!");
       // Update session data
