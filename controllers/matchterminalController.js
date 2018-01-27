@@ -8,7 +8,7 @@ var redis = require('redis'),
  */
 // Function sets up user data for view to use
 exports.setViewerData = function (req, res, next) {
-  res.locals.currentUser = req.username;
+  res.locals.currentUser = req.user;
   res.locals.error = req.flash("error");
   res.locals.infos = req.flash("info");
   next();

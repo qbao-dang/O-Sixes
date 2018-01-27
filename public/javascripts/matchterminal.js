@@ -8,6 +8,7 @@ function openServerConnection(){
 
     // grab match_id
     var match_id = myPath.split('/').pop();
+    //var connectSID = document.getCookie
 
     // When a connection is made
     stream.onopen = function () {
