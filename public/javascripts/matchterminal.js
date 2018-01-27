@@ -60,11 +60,10 @@ function publishAttendanceHandler(e) {
       sessionStorage.setItem('teamB', connectedUser);
       // send GET request for attendance to let the other user know
       getAttendance();
-
     }
   }
-
 }
+
 function convertMapName(key) {
     // note: not all maps need to be converted
     switch (key) {
