@@ -81,6 +81,7 @@ exports.postMapLock = function (req, res, next) {
         // Publish map to channel with client-safe user id
         var data = {user: req.user, map: maplock}; // Note: replce req.user with client-safe id
         var message = publishData('maplock',JSON.stringify(data, null, 2));
+        publisherClient.publish((req.params.matchid + "-updates"), message);
         res.json({success: "true", message:"Successfully locked " + maplock + "!"});
       }
   });
