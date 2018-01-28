@@ -74,18 +74,19 @@ function publishAttendanceHandler(e) {
 }
 // Handler for maplock broadcast
 function publishMapLockHandler(e) {
-  if (broadcastFilter(e)){
+  var data = JSON.parse(e.data);
+  if (broadcastFilter(data)){
     // Source of broadcast was not this user...
     // Notify user
-    alert('The following map has been locked by the other team: \n' + e.data.map);
+    alert('The following map has been locked by the other team: \n' + data.map);
     // Update page  <---- (TO DO)
   }
 }
 
 // Function to filter broadcasts that originated from this user
-function broadcastFilter(e){
+function broadcastFilter(data){
   var myUserID = readCookie('username');
-  var sourceUser = e.data.user
+  var sourceUser = data.user;
   return sourceUser == myUserID ? false: true;
 }
 function convertMapName(key) {
@@ -123,9 +124,9 @@ function lockInMap() {
             maplockTeamA.innerHTML = convertMapName(mapA);
             // update lock state
             let mapABadge = document.querySelector("#teamA-header .badge");
-            mapOneBadge.classList.remove("badge-warning");
-            mapOneBadge.classList.add("badge-success");
-            mapOneBadge.innerHTML ="Locked";
+            mapABadge.classList.remove("badge-warning");
+            mapABadge.classList.add("badge-success");
+            mapABadge.innerHTML ="Locked";
           } else {
             // Map is already locked by the other team...
             // Notify the user that the map was already locked

@@ -79,8 +79,10 @@ exports.postMapLock = function (req, res, next) {
           console.log('Maps updated in match file.');
         });
         // Publish map to channel with client-safe user id
-        var data = {user: req.user, map: maplock}; // Note: replce req.user with client-safe id
-        var message = publishData('maplock',JSON.stringify(data, null, 2));
+        console.log('Preparing to publish data to channel...');
+        var broadcastData = {user: req.user, map: maplock}; // Note: replce req.user with client-safe id
+        var message = publishData('maplock', JSON.stringify(broadcastData));
+        console.log('Publishing the following message to []' + req.params.matchid + "-updates" + '] channel:\n' + message)
         publisherClient.publish((req.params.matchid + "-updates"), message);
         res.json({success: "true", message:"Successfully locked " + maplock + "!"});
       }
