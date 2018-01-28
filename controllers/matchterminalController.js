@@ -39,7 +39,6 @@ exports.getSpecificMatchTerminal = function (req, res) {
 };
 // GET /matchterminal/:matchid/attendance controller
 exports.getAttendance = function (req, res) {
-  // NOTE: replace req.user with client-safe user id
   // Broadcast Attendance
   console.log('Publishing that ' + req.user + ' has connected to '+ req.params.matchid +'...');
 
@@ -53,20 +52,38 @@ exports.getAttendance = function (req, res) {
 exports.postMapLock = function (req, res, next) {
   // DUMMY CODE
   var maplock = req.body.maplock;
-  if (isMapLocked(req.params.matchid, maplock)) {
-    // Map has been locked already...
-    res.send("Map already locked.  Choose another map.")
-  } else {
-    // Map has not yet been locked...
-    lockMap(maplock); // Lock map
-    // Publish map to channel with client-safe user id
-    var data = {user: req.user, map: maplock};  // NOTE: replace req.user with client-safe id
-    var message = publishData('maplock',JSON.stringify(data, null, 2));
-    publisherClient.publish(req.params.matchid + '-updates', message);
-    // Respond to POST request
-    res.status = 200;
-    res.send("Successfully locked " + maplock + "!");
-  }
+  console.log('Map lock request made: ' + maplock +  '...');
+  // Check if map is locked
+  // DUMMY CODE
+  var maplockCheck;
+  // Read match file (TO BE REPLACED WITH MATCH OBJECT)
+  console.log('Opening match.json file...');
+  fs.readFile('./dummy/match.json', (err, data) => {
+      if (err) { console.log(err.message); return new Error('Failed to read file.')}
+      var match = JSON.parse(data);
+      console.log('Found match object: \n' + match.maps);
+        // Check if map is already locked
+      console.log('Checking for [' + maplock + '] inside of [maps]...') ;
+      if (match.maps.includes(maplock)){
+        // Map has been locked already...
+        res.json({success: "false", message:"Map already locked.  Choose another map."});
+      } else {
+        // Map has not yet been locked...
+        // DUMMY CODE
+        // Add map to match
+        match.maps.push(maplock);
+        var data = JSON.stringify(match, null, 2);
+        // Write match file
+        fs.writeFile('./dummy/match.json', data, (err) => {
+          if (err) next(new Error('Failed to write in file.'));
+          console.log('Maps updated in match file.');
+        });
+        // Publish map to channel with client-safe user id
+        var data = {user: req.user, map: maplock}; // Note: replce req.user with client-safe id
+        var message = publishData('maplock',JSON.stringify(data, null, 2));
+        res.json({success: "true", message:"Successfully locked " + maplock + "!"});
+      }
+  });
 };
 /*
  * CONTROLLER FUNCTIONS FOR SSE
@@ -91,6 +108,7 @@ exports.setSubscriber = function(req, res) {
     console.log('Message sending: \n' + message);
     res.write(message); // Note the extra newline
   });
+
 
   //send headers for event-stream connection
   res.writeHead(200, {
@@ -185,41 +203,7 @@ isCaptain = function (username, team_id){
     return false;
   }
 };
-// Function to check if map is already lock
-isMapLocked = function(matchId, mapName){
-  // DUMMY CODE
-  // Read match file (TO BE REPLACED WITH MATCH OBJECT)
-  fs.readFile('../dummy/match.json', (err, data) => {
-      if (err) next(new Error('Failed to read file.'));
-      let match = JSON.parse(data);
-        // Check if map is already locked
-      if (match.maps.includes(mapName)){
-        // Map has already been locked...
-        return true;
-      } else {
-        // Map has not been locked yet...
-        return true;
-      }
-  });
-}
-// Function to lock map
-mapLock = function(mapName){
-  // DUMMY CODE
-  var match;
-  // Read match file (TO BE REPLACED WITH MATCH OBJECT)
-  fs.readFile('../dummy/match.json', (err, data) => {
-      if (err) next(new Error('Failed to read file.'));
-      match = JSON.parse(data);
-  });
-  // Add map to match
-  match.maps.push(mapName);
-  var data = JSON.stringify(match, null, 2);
-  // Write match file
-  fs.writeFile('../dummy/match.json', data, (err) => {
-    if (err) next(new Error('Failed to write in file.'));
-    console.log('Maps updated in match file.');
-  });
-}
+
 // Function to grab team captain
 grabTeamCaptain = function (team_id) {
   switch (team_id) {
@@ -248,7 +232,7 @@ grabTeams = function (matchId) {
       return new error("Match ID does not exist.");
   }
 }
-// Function to format data into a message format for publication to specific event
-publishData = function (eventName, data) {
-  return 'event: ' + eventName + '\nid:  1\n' + 'data: ' + data + '\n\n';
+// Function to format data into a message format for publication to specific events
+publishData = function (eventName, data){
+  return 'event: ' + eventName + '\nid: 1\n' + 'data: '+ data + '\n\n';
 }

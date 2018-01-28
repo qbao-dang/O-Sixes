@@ -1,5 +1,5 @@
 var mapButtons = document.querySelectorAll(".btn-map-select");  // Grab all map buttons
-var mapA = document.querySelector("#teamA-locked-map");
+var maplockTeamA = document.querySelector("#teamA-locked-map");
 
 function openServerConnection(){
     // Open a connection
@@ -86,7 +86,7 @@ function publishMapLockHandler(e) {
 function broadcastFilter(e){
   var myUserID = readCookie('username');
   var sourceUser = e.data.user
-  sourceUser == myUserID ? return false; return true;
+  return sourceUser == myUserID ? false: true;
 }
 function convertMapName(key) {
     // note: not all maps need to be converted
@@ -111,25 +111,28 @@ function convertMapName(key) {
 function lockInMap() {
     // Check if user selected a map
     if (sessionStorage.getItem('map1')){
+        let mapA = sessionStorage.getItem("map1");
         // POST mapA to server
-        let maplocked = postMapLock(mapA);
+        //let maplocked = postMapLock(mapA);
+        $.post(window.location.href + '/maplock', {maplock: mapA}, (data) => {
+          if (data.success) {
+            // Map was successfully locked...
+            alert('Map was successfully locked.');
+            disableLockedMapSelection();    // disable button since it is locked out now
+            // update map lock button to show selected map
+            maplockTeamA.innerHTML = convertMapName(mapA);
+            // update lock state
+            let mapABadge = document.querySelector("#teamA-header .badge");
+            mapOneBadge.classList.remove("badge-warning");
+            mapOneBadge.classList.add("badge-success");
+            mapOneBadge.innerHTML ="Locked";
+          } else {
+            // Map is already locked by the other team...
+            // Notify the user that the map was already locked
+            alert("This map was already locked by the other team.");
+          }
+        });
 
-        if (maplocked) {
-          // Map was successfully locked...
-          disableLockedMapSelection();    // disable button since it is locked out now
-          // update map lock button to show selected map
-          let mapA = sessionStorage.getItem("map1");
-          mapA.innerHTML = convertMapName(mapOne);
-          // update lock state
-          let mapABadge = document.querySelector("#teamA-header .badge");
-          mapOneBadge.classList.remove("badge-warning");
-          mapOneBadge.classList.add("badge-success");
-          mapOneBadge.innerHTML ="Locked";
-        } else {
-          // Map is already locked by the other team...
-          // Notify the user that the map was already locked
-          alert("This map was already locked by the other team.");
-        }
     } else {
         document.getElementById("map-select-error").classList.toggle("d-none");
     }
