@@ -39,6 +39,7 @@ exports.getSpecificMatchTerminal = function (req, res) {
 };
 // GET /matchterminal/:matchid/attendance controller
 exports.getAttendance = function (req, res) {
+  // NOTE: replace req.user with client-safe user id
   // Broadcast Attendance
   console.log('Publishing that ' + req.user + ' has connected to '+ req.params.matchid +'...');
 
@@ -58,6 +59,12 @@ exports.postMapLock = function (req, res, next) {
   } else {
     // Map has not yet been locked...
     lockMap(maplock); // Lock map
+    // Publish map to channel with client-safe user id
+    var data = {user: req.user, map: maplock};  // NOTE: replace req.user with client-safe id
+    var message = publishData('maplock',JSON.stringify(data, null, 2));
+    publisherClient.publish(req.params.matchid + '-updates', message);
+    // Respond to POST request
+    res.status = 200;
     res.send("Successfully locked " + maplock + "!");
   }
 };
@@ -84,7 +91,6 @@ exports.setSubscriber = function(req, res) {
     console.log('Message sending: \n' + message);
     res.write(message); // Note the extra newline
   });
-
 
   //send headers for event-stream connection
   res.writeHead(200, {
@@ -241,4 +247,8 @@ grabTeams = function (matchId) {
     default:
       return new error("Match ID does not exist.");
   }
+}
+// Function to format data into a message format for publication to specific event
+publishData = function (eventName, data) {
+  return 'event: ' + eventName + '\nid:  1\n' + 'data: ' + data + '\n\n';
 }

@@ -33,8 +33,10 @@ function openServerConnection(){
     stream.addEventListener('test', function(e) {
       console.log(e.data);
     }, false);
-    // Listen for attendance broadcast on specific stream
-    stream.addEventListener('attendance', function(e) {publishAttendanceHandler(e)});
+    // Listen for attendance broadcast
+    stream.addEventListener('attendance', (e) => {publishAttendanceHandler(e)});
+    // Listen for maplock broadcast
+    stream.addEventListener('maplock', (e) => {publishMapLockHandler(e)});
     // Close the connection when the window is closed
     window.addEventListener('beforeunload', function() {
       stream.close();
@@ -44,6 +46,13 @@ function openServerConnection(){
 // Function to send GET request for attendance
 function getAttendance() {
   $.get(window.location.href +'/attendance');
+}
+/* Function to send POST request for locking in a map */
+function postMapLock(mapName) {
+  // Sends POST request with map name
+  $.post(window.location.href + '/maplock', {maplock: mapName}, (data) => {
+    return data.success;
+  });
 }
 // Handler for attendance broadcast
 function publishAttendanceHandler(e) {
@@ -63,7 +72,22 @@ function publishAttendanceHandler(e) {
     }
   }
 }
+// Handler for maplock broadcast
+function publishMapLockHandler(e) {
+  if (broadcastFilter(e)){
+    // Source of broadcast was not this user...
+    // Notify user
+    alert('The following map has been locked by the other team: \n' + e.data.map);
+    // Update page  <---- (TO DO)
+  }
+}
 
+// Function to filter broadcasts that originated from this user
+function broadcastFilter(e){
+  var myUserID = readCookie('username');
+  var sourceUser = e.data.user
+  sourceUser == myUserID ? return false; return true;
+}
 function convertMapName(key) {
     // note: not all maps need to be converted
     switch (key) {
@@ -83,23 +107,29 @@ function convertMapName(key) {
     }
 }
 
+/* Handler for "Lock In" Button */
 function lockInMap() {
     // Check if user selected a map
     if (sessionStorage.getItem('map1')){
-        disableLockedMapSelection();    // disable button since it is locked out now
+        // POST mapA to server
+        let maplocked = postMapLock(mapA);
 
-        // update map lock button to show selected map
-        let mapOne = sessionStorage.getItem("map1");
-        mapA.innerHTML = convertMapName(mapOne);
-
-        // update lock state
-        let mapOneBadge = document.querySelector("#teamA-header .badge");
-        mapOneBadge.classList.remove("badge-warning");
-        mapOneBadge.classList.add("badge-success");
-        mapOneBadge.innerHTML ="Locked";
-
-        // update server with map A selection
-        sendMapOne(mapOne);
+        if (maplocked) {
+          // Map was successfully locked...
+          disableLockedMapSelection();    // disable button since it is locked out now
+          // update map lock button to show selected map
+          let mapA = sessionStorage.getItem("map1");
+          mapA.innerHTML = convertMapName(mapOne);
+          // update lock state
+          let mapABadge = document.querySelector("#teamA-header .badge");
+          mapOneBadge.classList.remove("badge-warning");
+          mapOneBadge.classList.add("badge-success");
+          mapOneBadge.innerHTML ="Locked";
+        } else {
+          // Map is already locked by the other team...
+          // Notify the user that the map was already locked
+          alert("This map was already locked by the other team.");
+        }
     } else {
         document.getElementById("map-select-error").classList.toggle("d-none");
     }
@@ -110,11 +140,6 @@ function disableLockedMapSelection() {
 
     lockedMapButton.removeAttribute("data-toggle");
     lockedMapButton.removeAttribute("data-target");
-}
-
-function sendMapOne(mapOne) {
-    // sends map A selection to server
-    console.log("Map 1 (" + mapOne + ") has been sent to the server!");
 }
 
 /* Function for reading cookie (SRC = https://www.quirksmode.org/js/cookies.html) */
