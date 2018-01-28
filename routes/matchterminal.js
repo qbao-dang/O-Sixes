@@ -1,11 +1,13 @@
 var express = require('express');
 var matchTerminalController = require('../controllers/matchTerminalController');
+var bodyParser = require('body-parser');
 var router = express.Router();
 
+var jsonParser = bodyParser.json(); // middleware to parse json data in POST requests
 
 router.use(matchTerminalController.setViewerData);
 
-/* GET users listing. */
+/* GET match terminal page */
 router.get('/', matchTerminalController.getMatchTerminal);
 /* GET specific match terminal */
 router.get('/:matchid', matchTerminalController.getSpecificMatchTerminal);
@@ -13,7 +15,8 @@ router.get('/:matchid', matchTerminalController.getSpecificMatchTerminal);
 router.get('/:matchid/attendance', matchTerminalController.getAttendance);
 /* Create stream for match terminal */
 router.get('/:matchid/sse', matchTerminalController.setSubscriber);
-
+/* POST map lock */
+router.post('/:matchid/maplock', jsonParser, matchTerminalController.postMapLock);
 /* Fire test event for match terminal */
 router.get('/fire-event/:event_name', matchTerminalController.fireEvent);
 

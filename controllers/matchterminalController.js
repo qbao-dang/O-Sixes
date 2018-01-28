@@ -1,5 +1,5 @@
 var express = require('express');
-
+const fs = require('fs');
 var redis = require('redis'),
     publisherClient = redis.createClient();
 
@@ -47,6 +47,19 @@ exports.getAttendance = function (req, res) {
   // Send response
   res.status = 200;
   res.send("Attendance acknowledged.");
+};
+/* POST /:matchid/maplock controller */
+exports.postMapLock = function (req, res, next) {
+  // DUMMY CODE
+  var maplock = req.body.maplock;
+  if (isMapLocked(req.params.matchid, maplock)) {
+    // Map has been locked already...
+    res.send("Map already locked.  Choose another map.")
+  } else {
+    // Map has not yet been locked...
+    lockMap(maplock); // Lock map
+    res.send("Successfully locked " + maplock + "!");
+  }
 };
 /*
  * CONTROLLER FUNCTIONS FOR SSE
@@ -166,6 +179,41 @@ isCaptain = function (username, team_id){
     return false;
   }
 };
+// Function to check if map is already lock
+isMapLocked = function(matchId, mapName){
+  // DUMMY CODE
+  // Read match file (TO BE REPLACED WITH MATCH OBJECT)
+  fs.readFile('../dummy/match.json', (err, data) => {
+      if (err) next(new Error('Failed to read file.'));
+      let match = JSON.parse(data);
+        // Check if map is already locked
+      if (match.maps.includes(mapName)){
+        // Map has already been locked...
+        return true;
+      } else {
+        // Map has not been locked yet...
+        return true;
+      }
+  });
+}
+// Function to lock map
+mapLock = function(mapName){
+  // DUMMY CODE
+  var match;
+  // Read match file (TO BE REPLACED WITH MATCH OBJECT)
+  fs.readFile('../dummy/match.json', (err, data) => {
+      if (err) next(new Error('Failed to read file.'));
+      match = JSON.parse(data);
+  });
+  // Add map to match
+  match.maps.push(mapName);
+  var data = JSON.stringify(match, null, 2);
+  // Write match file
+  fs.writeFile('../dummy/match.json', data, (err) => {
+    if (err) next(new Error('Failed to write in file.'));
+    console.log('Maps updated in match file.');
+  });
+}
 // Function to grab team captain
 grabTeamCaptain = function (team_id) {
   switch (team_id) {
