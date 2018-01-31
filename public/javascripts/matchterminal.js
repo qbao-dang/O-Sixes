@@ -1,5 +1,6 @@
-var mapButtons = document.querySelectorAll(".btn-map-select");  // Grab all map buttons
-var maplockTeamA = document.querySelector("#teamA-locked-map");
+const mapButtons = document.querySelectorAll(".btn-map-select");  // Grab all map buttons
+const maplockTeamA = document.querySelector("#teamA-locked-map"); // Grab maplockTeamA button
+const maplockTeamB = document.querySelector("#teamB-locked-map"); // Grab maplockTeamB button
 
 function openServerConnection(){
     // Open a connection
@@ -77,9 +78,14 @@ function publishMapLockHandler(e) {
   var data = JSON.parse(e.data);
   if (broadcastFilter(data)){
     // Source of broadcast was not this user...
-    // Notify user
-    alert('The following map has been locked by the other team: \n' + data.map);
-    // Update page  <---- (TO DO)
+    // Update page...
+    // update map lock button to show selected map
+    maplockTeamB.innerHTML = convertMapName(data.map);
+    // update lock state badge
+    let mapBBadge = document.querySelector("#teamB-header .badge");
+    mapBBadge.classList.remove("badge-warning");
+    mapBBadge.classList.add("badge-success");
+    mapBBadge.innerHTML = "Locked";
   }
 }
 

@@ -19,9 +19,11 @@
 }
 
 /* Modal styles */
-.btn-map-select{
+.btn-map-select, .btn-map-ban {
     height: 5rem;
+    padding: 0 0;
 }
+
 
 #lockedMap-Modal h6 {
     margin-top: 20px;
@@ -36,10 +38,6 @@
     color:azure;
     font-weight:400;
     font-size:1.3rem;
-}
-
-.btn-map-select{
-    padding: 0 0;
 }
 
 .map-selected {
