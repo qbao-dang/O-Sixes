@@ -48,6 +48,38 @@ exports.getAttendance = function (req, res) {
   res.status = 200;
   res.send("Attendance acknowledged.");
 };
+/* GET /:matchid/ban-map controller */
+exports.getBanMap = (req, res) => {
+  var mapName = req.body.mapName;
+  var userName = req.user;
+  var checkTurn;
+  var banSuccess;
+  var banMessage;
+  // Check if its the User's turn to ban
+  // DUMMY CODE
+  console.log('Opening match.json file...');
+  fs.readFile('./dummy/match.json', (err, data) => {
+    var match = JSON.parse(data);
+    console.log("Checking if it is " + userName + "'s turn to ban...");
+    if (match.banTurn == userName){
+      // Confirmed that it is User's turn to ban...
+
+      // Toggle turn
+      
+      console.log("Informing user that it is their turn...");
+      banSuccess = true;
+      banMessage = "Successfully banned " + mapName + "!";
+      res.json({success: banSuccess, message: banMessage});
+    } else {
+      // Not User's turn to ban...
+      console.log("Informing user that it is NOT their turn...");
+      banSuccess = false;
+      banMessage = "It's not your turn.";
+      res.json({success: banSuccess, message: banMessage});
+    }
+  });
+
+};
 /* POST /:matchid/maplock controller */
 exports.postMapLock = function (req, res, next) {
   // DUMMY CODE
@@ -66,7 +98,7 @@ exports.postMapLock = function (req, res, next) {
       console.log('Checking for [' + maplock + '] inside of [maps]...') ;
       if (match.maps.includes(maplock)){
         // Map has been locked already...
-        res.json({success: "false", message:"Map already locked.  Choose another map."});
+        res.json({success: false, message:"Map already locked.  Choose another map."});
       } else {
         // Map has not yet been locked...
         // DUMMY CODE
@@ -84,7 +116,7 @@ exports.postMapLock = function (req, res, next) {
         var message = publishData('maplock', JSON.stringify(broadcastData));
         console.log('Publishing the following message to []' + req.params.matchid + "-updates" + '] channel:\n' + message)
         publisherClient.publish((req.params.matchid + "-updates"), message);
-        res.json({success: "true", message:"Successfully locked " + maplock + "!"});
+        res.json({success: true, message:"Successfully locked " + maplock + "!"});
       }
   });
 };
@@ -235,6 +267,23 @@ grabTeams = function (matchId) {
       return new error("Match ID does not exist.");
   }
 }
+// Function to check if it is the User's turn to ban a map
+checkTurn = function (userName) {
+  // DUMMY CODE
+  console.log('Opening match.json file...');
+  fs.readFile('./dummy/match.json', (err, data) => {
+    var match = JSON.parse(data);
+    console.log("Checking if it is " + userName + "'s turn to ban...");
+    if (match.banTurn == userName){
+      // It is the User's turn...
+      console.log("Confirmed: it is " + userName + "'s turn to ban.")
+      return true;
+    } else {
+      return false;
+    }
+  });
+}
+
 // Function to format data into a message format for publication to specific events
 publishData = function (eventName, data){
   return 'event: ' + eventName + '\nid: 1\n' + 'data: '+ data + '\n\n';

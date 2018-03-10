@@ -15,8 +15,11 @@ router.get('/:matchid', matchTerminalController.getSpecificMatchTerminal);
 router.get('/:matchid/attendance', matchTerminalController.getAttendance);
 /* Create stream for match terminal */
 router.get('/:matchid/sse', matchTerminalController.setSubscriber);
+/* GET for match terminal map ban*/
+router.get('/:matchid/ban-map/:mapName', matchTerminalController.getBanMap);
 /* POST map lock */
 router.post('/:matchid/maplock', jsonParser, matchTerminalController.postMapLock);
+
 /* Fire test event for match terminal */
 router.get('/fire-event/:event_name', matchTerminalController.fireEvent);
 

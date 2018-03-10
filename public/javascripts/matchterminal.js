@@ -145,6 +145,24 @@ function lockInMap() {
     }
 }
 
+/* Handler for Map Ban click */
+function banMap(mapName) {
+  // Send GET request to server to ask if it's OK to ban the map
+  $.get(window.location.href +'/ban-map/' + mapName, (data) => {
+    if (data.success) {
+      alert("S");
+      // Map was successfully banned...
+
+      // Hide map icon
+
+    } else {
+      // It's not your turn ...
+      alert("It's not your turn. Please wait.");
+    }
+  });
+
+}
+
 function disableLockedMapSelection() {
     var lockedMapButton = document.querySelector("#teamA-locked-map");
 
@@ -191,6 +209,13 @@ $(document).ready(function(){
 
         // set session map variable
         sessionStorage.setItem('map1',$(this).attr("value"));
+    });
+
+    // Assign onclick event to btn-map-ban buttons
+    $(".btn-map-ban").click(function(){
+        console.log("You are trying to ban " + $(this).attr("value"));
+
+        banMap($(this).attr("value"));
     });
 
 });
