@@ -63,6 +63,9 @@ exports.getBanMap = (req, res) => {
     console.log("Checking if it is " + userName + "'s turn to ban...");
     if (match.banTurn == userName){
       // Confirmed that it is User's turn to ban...
+      // Remove banned map from allMaps List
+      delete match.allMaps[match.allMaps.indexOf(mapName)];
+
       match.banTurn = nextTurn(req.params.matchid, userName);
       // Toggle turn
       var data = JSON.stringify(match, null, 2);

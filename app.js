@@ -15,6 +15,8 @@ var home = require('./routes/home');
 var leagues = require('./routes/leagues');
 var matchterminal = require('./routes/matchterminal');
 
+var dummySetup = require('./controllers/dummySetupController');
+
 
 var app = express();
 
@@ -25,7 +27,7 @@ app.set('view engine', 'ejs');
 
 // Set up passport for user authentication
 setUpPassport();
-
+dummySetup.setUpMatchFile();
 
 
 // uncomment after placing your favicon in /public
