@@ -150,9 +150,8 @@ function banMap(mapName) {
   // Send GET request to server to ask if it's OK to ban the map
   $.get(window.location.href +'/ban-map/' + mapName, (data) => {
     if (data.success) {
-      alert("S");
+      alert(mapName + "map has been banned successfully!");
       // Map was successfully banned...
-
       // Hide map icon
 
     } else {
@@ -216,6 +215,8 @@ $(document).ready(function(){
         console.log("You are trying to ban " + $(this).attr("value"));
 
         banMap($(this).attr("value"));
+        // Hide map
+        $(this).toggleClass("w3-hide");
     });
 
 });

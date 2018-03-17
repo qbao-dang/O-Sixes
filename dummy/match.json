@@ -1,14 +1,14 @@
 {
   "maps": [],
-  "banTurn": "UserA",
+  "banTurn": "UserB",
   "allMaps": [
     "hanamura",
     "horizon",
     "anubis",
-    "volskaya",
-    "dorado",
+    null,
+    null,
     "junkertown",
-    "route66",
+    null,
     "watchpoint",
     "eichenwalde",
     "hollywood",
