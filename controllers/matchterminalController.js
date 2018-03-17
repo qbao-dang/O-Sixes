@@ -50,7 +50,7 @@ exports.getAttendance = function (req, res) {
 };
 /* GET /:matchid/ban-map controller */
 exports.getBanMap = (req, res) => {
-  var mapName = req.body.mapName;
+  var mapName = req.params.mapName;
   var userName = req.user;
   var checkTurn;
   var banSuccess;
@@ -63,9 +63,14 @@ exports.getBanMap = (req, res) => {
     console.log("Checking if it is " + userName + "'s turn to ban...");
     if (match.banTurn == userName){
       // Confirmed that it is User's turn to ban...
-
+      match.banTurn = nextTurn(req.params.matchid, userName);
       // Toggle turn
-      
+      var data = JSON.stringify(match, null, 2);
+      console.log("Updating match file...");
+      fs.writeFile('./dummy/match.json', data, (err) => {
+        if (err) next(new Error('Failed to write in file.'));
+        console.log('Match file updated successfully.');
+      });
       console.log("Informing user that it is their turn...");
       banSuccess = true;
       banMessage = "Successfully banned " + mapName + "!";
@@ -267,21 +272,25 @@ grabTeams = function (matchId) {
       return new error("Match ID does not exist.");
   }
 }
-// Function to check if it is the User's turn to ban a map
-checkTurn = function (userName) {
+// Function to toggle next turn for a match
+nextTurn = function (matchId, user) {
   // DUMMY CODE
-  console.log('Opening match.json file...');
-  fs.readFile('./dummy/match.json', (err, data) => {
-    var match = JSON.parse(data);
-    console.log("Checking if it is " + userName + "'s turn to ban...");
-    if (match.banTurn == userName){
-      // It is the User's turn...
-      console.log("Confirmed: it is " + userName + "'s turn to ban.")
-      return true;
-    } else {
-      return false;
-    }
-  });
+  switch(matchId){
+    case "wed8pm-123":
+      switch(user){
+        case "UserA":
+          console.log("User has been switched!");
+          return "UserB";
+        case "UserB":
+          console.log("User has been switched!");
+          return "UserA";
+        default:
+          return new Error("User is not assigned to this match.");
+      }
+    default:
+      console.log("Match ID " + matchId + "was not found.  nexTurn toggle failed.");
+      return new Error("Match ID does not exist.");
+  }
 }
 
 // Function to format data into a message format for publication to specific events
