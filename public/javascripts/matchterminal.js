@@ -145,22 +145,18 @@ function lockInMap() {
     }
 }
 
-/* Handler for Map Ban click */
-function banMap(mapName) {
-  // Send GET request to server to ask if it's OK to ban the map
-  $.get(window.location.href +'/ban-map/' + mapName, (data) => {
-    if (data.success) {
-      alert(mapName + "map has been banned successfully!");
-      // Map was successfully banned...
-      // Hide map icon
-
-    } else {
-      // It's not your turn ...
-      alert("It's not your turn. Please wait.");
-    }
-  });
-
-}
+/* Handler for map ban */
+var banMap = function (mapName) {
+  return new Promise(  (resolve, reject) => {
+    // Send GET request to server to ask if it's OK to ban the map
+    $.get(window.location.href +'/ban-map/' + mapName, (data) => {
+      if (data.success) {
+        resolve(mapName + " map has been banned successfully!"); // fulfilled
+      } else {
+        resolve(new Error("It's not your turn. Please wait.")); // rejected
+      }
+    });
+  })};
 
 function disableLockedMapSelection() {
     var lockedMapButton = document.querySelector("#teamA-locked-map");
@@ -212,11 +208,15 @@ $(document).ready(function(){
 
     // Assign onclick event to btn-map-ban buttons
     $(".btn-map-ban").click(function(){
-        console.log("You are trying to ban " + $(this).attr("value"));
-
-        banMap($(this).attr("value"));
-        // Hide map
-        $(this).toggleClass("w3-hide");
-    });
-
+        var thisMapButton = $(this);
+        console.log("You are trying to ban " + thisMapButton.attr("value"));
+        banMap(thisMapButton.attr("value"))
+          .then(function(fulfilled){
+            thisMapButton.toggleClass("w3-hide");
+            alert(fulfilled);
+          })
+          .catch(function(error){
+            alert(error.message);
+          });
+      });
 });
