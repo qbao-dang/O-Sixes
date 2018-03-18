@@ -1,22 +1,22 @@
 {
   "maps": [],
-  "banTurn": "UserB",
+  "banTurn": "UserA",
   "allMaps": [
     null,
-    "horizon",
-    null,
-    "volskaya",
-    "dorado",
-    "junkertown",
-    "route66",
     null,
     null,
-    "hollywood",
-    "kings",
-    "numbani",
-    "ilios",
-    "lijiang",
-    "nepal",
-    "oasis"
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
   ]
 }

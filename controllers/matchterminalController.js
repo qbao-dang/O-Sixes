@@ -75,6 +75,13 @@ exports.getBanMap = (req, res) => {
         console.log('Match file updated successfully.');
       });
       console.log("Informing user that it is their turn...");
+      // Publish banned map to "mapban" channel
+      console.log('Preparing to publish data to channel...');
+      var broadcastData = {map: mapName};
+      var message = publishData('mapban', JSON.stringify(broadcastData));
+      console.log('Publishing the following message to [' + req.params.matchid + '-updates] channel\n' + message);
+      publisherClient.publish((req.params.matchid + '-updates'), message);
+      // Send successful response to user
       banSuccess = true;
       banMessage = "Successfully banned " + mapName + "!";
       res.json({success: banSuccess, message: banMessage});

@@ -38,6 +38,8 @@ function openServerConnection(){
     stream.addEventListener('attendance', (e) => {publishAttendanceHandler(e)});
     // Listen for maplock broadcast
     stream.addEventListener('maplock', (e) => {publishMapLockHandler(e)});
+    // Listen for mapban broadcast
+    stream.addEventListener('mapban', (e) => {publishMapBanHandler(e)});
     // Close the connection when the window is closed
     window.addEventListener('beforeunload', function() {
       stream.close();
@@ -86,6 +88,15 @@ function publishMapLockHandler(e) {
     mapBBadge.classList.remove("badge-warning");
     mapBBadge.classList.add("badge-success");
     mapBBadge.innerHTML = "Locked";
+  }
+}
+/* Handler for mapban broadcast */
+function publishMapBanHandler(e) {
+  var data = JSON.parse(e.data);
+  // Hide map
+  var mapButton = $(".btn-map-ban[value = '"+ data.map +"' ]");
+  if (mapButton.hasClass("w3-hide") == false) {
+    mapButton.toggleClass("w3-hide");
   }
 }
 
@@ -212,11 +223,10 @@ $(document).ready(function(){
         console.log("You are trying to ban " + thisMapButton.attr("value"));
         banMap(thisMapButton.attr("value"))
           .then(function(fulfilled){
-            thisMapButton.toggleClass("w3-hide");
-            alert(fulfilled);
+            // Do nothing for now
           })
           .catch(function(error){
-            alert(error.message);
+            // Do nothing for now
           });
       });
 });
