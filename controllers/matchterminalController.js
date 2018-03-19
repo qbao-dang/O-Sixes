@@ -55,43 +55,52 @@ exports.getBanMap = (req, res) => {
   var checkTurn;
   var banSuccess;
   var banMessage;
-  // Check if its the User's turn to ban
+
   // DUMMY CODE
   console.log('Opening match.json file...');
   fs.readFile('./dummy/match.json', (err, data) => {
     var match = JSON.parse(data);
     console.log("Checking if it is " + userName + "'s turn to ban...");
-    if (match.banTurn == userName){
-      // Confirmed that it is User's turn to ban...
-      // Remove banned map from allMaps List
-      delete match.allMaps[match.allMaps.indexOf(mapName)];
 
-      match.banTurn = nextTurn(req.params.matchid, userName);
-      // Toggle turn
-      var data = JSON.stringify(match, null, 2);
-      console.log("Updating match file...");
-      fs.writeFile('./dummy/match.json', data, (err) => {
-        if (err) next(new Error('Failed to write in file.'));
-        console.log('Match file updated successfully.');
-      });
-      console.log("Informing user that it is their turn...");
-      // Publish banned map to "mapban" channel
-      console.log('Preparing to publish data to channel...');
-      var broadcastData = {map: mapName};
-      var message = publishData('mapban', JSON.stringify(broadcastData));
-      console.log('Publishing the following message to [' + req.params.matchid + '-updates] channel\n' + message);
-      publisherClient.publish((req.params.matchid + '-updates'), message);
-      // Send successful response to user
-      banSuccess = true;
-      banMessage = "Successfully banned " + mapName + "!";
-      res.json({success: banSuccess, message: banMessage});
+    // Check if maps have been locked already
+    if (match.maps.length >= 2){
+      // Check if its the User's turn to ban
+      if (match.banTurn == userName){
+        // Confirmed that it is User's turn to ban...
+        // Remove banned map from allMaps List
+        delete match.allMaps[match.allMaps.indexOf(mapName)];
+
+        match.banTurn = nextTurn(req.params.matchid, userName);
+        // Toggle turn
+        var data = JSON.stringify(match, null, 2);
+        console.log("Updating match file...");
+        fs.writeFile('./dummy/match.json', data, (err) => {
+          if (err) next(new Error('Failed to write in file.'));
+          console.log('Match file updated successfully.');
+        });
+        console.log("Informing user that it is their turn...");
+        // Publish banned map to "mapban" channel
+        console.log('Preparing to publish data to channel...');
+        var broadcastData = {map: mapName};
+        var message = publishData('mapban', JSON.stringify(broadcastData));
+        console.log('Publishing the following message to [' + req.params.matchid + '-updates] channel\n' + message);
+        publisherClient.publish((req.params.matchid + '-updates'), message);
+        // Send successful response to user
+        banSuccess = true;
+        banMessage = "Successfully banned " + mapName + "!";
+        res.json({success: banSuccess, message: banMessage, code:0});
+      } else {
+        // Not User's turn to ban...
+        console.log("Informing user that it is NOT their turn...");
+        banSuccess = false;
+        banMessage = "It's not your turn.";
+        res.json({success: banSuccess, message: banMessage, code:1});
+      }
     } else {
-      // Not User's turn to ban...
-      console.log("Informing user that it is NOT their turn...");
-      banSuccess = false;
-      banMessage = "It's not your turn.";
-      res.json({success: banSuccess, message: banMessage});
+      // Players need to lock maps first
+      res.json({success: false, message: "One or more teams have not locked a map yet.", code: 2});
     }
+
   });
 
 };

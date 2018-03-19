@@ -164,7 +164,19 @@ var banMap = function (mapName) {
       if (data.success) {
         resolve(mapName + " map has been banned successfully!"); // fulfilled
       } else {
-        resolve(new Error("It's not your turn. Please wait.")); // rejected
+        switch(data.code){
+          case 1:
+            //Not your turn
+            resolve(new Error(data.message)); // rejected
+            break;
+          case 2:
+            // Map locking not complete
+            resolve(new Error(data.message));  // rejected
+            break;
+          default:
+
+        }
+
       }
     });
   })};
