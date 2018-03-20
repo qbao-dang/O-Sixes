@@ -89,11 +89,16 @@ function publishMapLockHandler(e) {
     mapBBadge.classList.add("badge-success");
     mapBBadge.innerHTML = "Locked";
   }
+  // Hide map ban button
+  var mapButton = $(".btn-map-ban[value = '"+ data.map +"' ]");
+  if (mapButton.hasClass("w3-hide") == false) {
+    mapButton.toggleClass("w3-hide");
+  }
 }
 /* Handler for mapban broadcast */
 function publishMapBanHandler(e) {
   var data = JSON.parse(e.data);
-  // Hide map
+  // Hide map ban button
   var mapButton = $(".btn-map-ban[value = '"+ data.map +"' ]");
   if (mapButton.hasClass("w3-hide") == false) {
     mapButton.toggleClass("w3-hide");
@@ -173,8 +178,10 @@ var banMap = function (mapName) {
             // Map locking not complete
             resolve(new Error(data.message));  // rejected
             break;
-          default:
-
+          case 3:
+            // Map banning complete
+            resolve(new Error(data.message));
+            break;
         }
 
       }

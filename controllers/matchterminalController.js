@@ -63,13 +63,14 @@ exports.getBanMap = (req, res) => {
     console.log("Checking if it is " + userName + "'s turn to ban...");
 
     // Check if maps have been locked already
-    if (match.maps.length >= 2){
+    if (match.maps.length >= 2 && match.allMaps.length > 1){
       // Check if its the User's turn to ban
       if (match.banTurn == userName){
         // Confirmed that it is User's turn to ban...
         // Remove banned map from allMaps List
         delete match.allMaps[match.allMaps.indexOf(mapName)];
-
+        match.allMaps.sort();
+        match.allMaps.pop();  // remove last element of array, which should be null
         match.banTurn = nextTurn(req.params.matchid, userName);
         // Toggle turn
         var data = JSON.stringify(match, null, 2);
@@ -96,6 +97,9 @@ exports.getBanMap = (req, res) => {
         banMessage = "It's not your turn.";
         res.json({success: banSuccess, message: banMessage, code:1});
       }
+    } else if (match.allMaps.length == 1) {
+        // Map ban complete
+        res.json({success:false, message: "Map ban complete!", code:3});
     } else {
       // Players need to lock maps first
       res.json({success: false, message: "One or more teams have not locked a map yet.", code: 2});
@@ -128,6 +132,11 @@ exports.postMapLock = function (req, res, next) {
         // DUMMY CODE
         // Add map to match
         match.maps.push(maplock);
+        // Remove locked map from allMaps List
+        delete match.allMaps[match.allMaps.indexOf(maplock)];
+        match.allMaps.sort();
+        match.allMaps.pop();  // remove last element of array, which should be null
+        // Update match file...
         var data = JSON.stringify(match, null, 2);
         // Write match file
         fs.writeFile('./dummy/match.json', data, (err) => {
