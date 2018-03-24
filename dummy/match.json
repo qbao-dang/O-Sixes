@@ -1,22 +1,22 @@
 {
-  "maps": [],
-  "banTurn": "UserA",
+  "maps": [
+    "dorado",
+    "junkertown"
+  ],
+  "banTurn": "UserB",
   "allMaps": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
+    "anubis",
+    "eichenwalde",
+    "hollywood",
+    "horizon",
+    "ilios",
+    "kings",
+    "lijiang",
+    "nepal",
+    "numbani",
+    "oasis",
+    "route66",
+    "volskaya",
+    "watchpoint"
   ]
 }

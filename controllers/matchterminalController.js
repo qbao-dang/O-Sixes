@@ -108,6 +108,19 @@ exports.getBanMap = (req, res) => {
   });
 
 };
+/* GET /:matchId/check-banned-maps */
+exports.getCheckBannedMaps = function (req, res) {
+  // This handles GET requests for updating the banned maps for when a player leaves the page
+  var res_data = {maps:[]};
+  fs.readFile('./dummy/match.json', (err, data) => {
+    if (err) { console.log(err.message); return new Error('Failed to read file.')}
+    var match = JSON.parse(data);
+    res_data.maps = match.allMaps;
+    console.log('Sending the following maps: \n' + res_data.maps);
+    res.json(res_data);
+  });
+
+}
 /* POST /:matchid/maplock controller */
 exports.postMapLock = function (req, res, next) {
   // DUMMY CODE
@@ -120,6 +133,7 @@ exports.postMapLock = function (req, res, next) {
   console.log('Opening match.json file...');
   fs.readFile('./dummy/match.json', (err, data) => {
       if (err) { console.log(err.message); return new Error('Failed to read file.')}
+
       var match = JSON.parse(data);
       console.log('Found match object: \n' + match.maps);
         // Check if map is already locked

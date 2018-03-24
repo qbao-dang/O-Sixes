@@ -17,6 +17,8 @@ router.get('/:matchid/attendance', matchTerminalController.getAttendance);
 router.get('/:matchid/sse', matchTerminalController.setSubscriber);
 /* GET for match terminal map ban*/
 router.get('/:matchid/ban-map/:mapName', matchTerminalController.getBanMap);
+/* GET for banned map check */
+router.get('/:matchid/check-banned-maps', matchTerminalController.getCheckBannedMaps);
 /* POST map lock */
 router.post('/:matchid/maplock', jsonParser, matchTerminalController.postMapLock);
 

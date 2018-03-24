@@ -50,6 +50,16 @@ function openServerConnection(){
 function getAttendance() {
   $.get(window.location.href +'/attendance');
 }
+// Function to send GET request for banned Maps
+function getBannedMaps() {
+  $.get(window.location.href +'/check-banned-maps', (data) => {
+    $(".btn-map-ban").addClass("w3-hide"); // Hide all map ban button
+    for (i = 0; i < data.maps.length; i++){
+      var mapButton = $(".btn-map-ban[value = '"+ data.maps[i] +"' ]");
+        mapButton.toggleClass("w3-hide"); // Toggle on map ban button
+    }
+  });
+}
 /* Function to send POST request for locking in a map */
 function postMapLock(mapName) {
   // Sends POST request with map name
@@ -222,7 +232,8 @@ $(document).ready(function(){
     openServerConnection();
     // Check in with server
     getAttendance();
-
+    // Get banned maps
+    getBannedMaps();
     // Assign onclick events to btn-map-select buttons
     $(".btn-map-select").click(function(){
         console.log("You chose " + $(this).attr("value"));
